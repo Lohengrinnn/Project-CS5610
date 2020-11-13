@@ -15,11 +15,21 @@ export class HomeComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    const mapProperties = {
-      center: new google.maps.LatLng(35.2271, -80.8431),
-      zoom: 15,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-    this.map = new google.maps.Map(this.mapElement.nativeElement, mapProperties);
+    this.initGoogleMap();
+  }
+
+  initGoogleMap() {
+    if(window.google){
+      const mapProperties = {
+        center: new google.maps.LatLng(35.2271, -80.8431),
+        zoom: 15,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+      this.map = new google.maps.Map(this.mapElement.nativeElement, mapProperties);
+    } else {
+      setTimeout(() => {
+        this.initGoogleMap();
+      }, 2000);
+    }
   }
 }
