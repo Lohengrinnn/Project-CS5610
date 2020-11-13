@@ -9,6 +9,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { SearchComponent } from './search/search.component';
 import { DetailComponent } from './detail/detail.component';
 import { RegisterComponent } from './register/register.component';
+import { ProductTableComponent } from './product-table/product-table.component';
+import { ProductGridComponent } from './product-grid/product-grid.component';
+import { ProductMapComponent } from './product-map/product-map.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { RegisterComponent } from './register/register.component';
     ProfileComponent,
     SearchComponent,
     DetailComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProductTableComponent,
+    ProductGridComponent,
+    ProductMapComponent
   ],
   imports: [
     BrowserModule,
