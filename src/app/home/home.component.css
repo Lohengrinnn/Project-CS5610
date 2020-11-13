@@ -1,0 +1,15 @@
+.home {
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap-reverse;
+}
+
+.main {
+  flex: 1
+}
+
+@media screen and (max-width: 750px) {
+  .dashboard {
+    display: none;
+  }
+}

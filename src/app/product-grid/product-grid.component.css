@@ -1,0 +1,31 @@
+ul.products {
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 1em;
+}
+
+.products > li {
+    background-color: #f5f5f5;
+    list-style: none;
+    width: 200px;
+    text-align: left;
+    padding: 5px 10px 5px;
+    margin: 5px;
+}
+
+.products > li .name {
+    font-weight: bold;
+}
+
+.products > li .type {
+    color: #666;
+}
+
+.products > li .address {
+    margin-top: 5px;
+    padding-top: 5px;
+    border-top: 1px solid #dcdcdc;
+    font-style: italic;
+    font-size: 0.8em;
+}
