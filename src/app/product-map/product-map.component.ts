@@ -18,7 +18,6 @@ export class ProductMapComponent implements OnInit {
   ) {
     this.mapService = mapService;
     this.productService = productService;
-    this.products = this.productService.getProducts();
   }
 
   ngOnInit(): void {}
@@ -26,7 +25,8 @@ export class ProductMapComponent implements OnInit {
   ngAfterViewInit(): void {
     console.log('products', this.products);
     this.mapService.initMap(this.el).then(() => {
-      this.mapService.markProducts(this.products);
+      this.productService.getProducts()
+        .then(products => this.mapService.markProducts(this.products));
     });
   }
 }
