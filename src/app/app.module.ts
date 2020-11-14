@@ -12,6 +12,7 @@ import { RegisterComponent } from './register/register.component';
 import { ProductTableComponent } from './product-table/product-table.component';
 import { ProductGridComponent } from './product-grid/product-grid.component';
 import { ProductMapComponent } from './product-map/product-map.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ProductMapComponent } from './product-map/product-map.component';
     RegisterComponent,
     ProductTableComponent,
     ProductGridComponent,
-    ProductMapComponent
+    ProductMapComponent,
+    PrivacyPolicyComponent
   ],
   imports: [
     BrowserModule,

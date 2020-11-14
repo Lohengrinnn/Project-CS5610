@@ -1,0 +1,8 @@
+.privacy-policy {
+  position: fixed;
+  width: 300px;
+  height: 500px;
+  padding: 20px;
+  background-color: antiquewhite;
+  border-style: wave;
+}
