@@ -1,3 +1,5 @@
+import {GeoLocation} from "./location";
+
 export interface Product {
   id: number;
   name: string;
@@ -5,6 +7,9 @@ export interface Product {
   price: number,
   description: string,
   address: string,
+  location: GeoLocation,
   owner: string,
   image: object
 }
+
+

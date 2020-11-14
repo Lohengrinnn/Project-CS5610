@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Product} from "../class/product";
+import {Product} from "../../classes/product";
 
 @Component({
   selector: 'app-product-grid',
@@ -8,6 +8,7 @@ import {Product} from "../class/product";
 })
 export class ProductGridComponent implements OnInit {
   @Input() products: Product[];
+  @Input() publish: boolean = false;
   constructor() { }
 
   ngOnInit(): void {
