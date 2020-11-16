@@ -15,9 +15,23 @@ export class MapService {
 
   constructor() {}
 
+  getGoogleMap() {
+    return new Promise((resolve, reject) => {
+      if((window as any).google){
+        resolve(google.maps);
+      } else if((window as any).listenToGoogleMapLoad) {
+        (window as any).listenToGoogleMapLoad(() => {
+          resolve(google.maps);
+        });
+      } else {
+        reject();
+      }
+    })
+  }
+
   initMap(mapElement) {
-    return this.getUserLocation().then((location: GeoLocation) => {
-      console.log('my location is', location);
+    return this.getGoogleMap().then(()=> this.getUserLocation()).then((location: GeoLocation) => {
+      console.log('my 222 location is', location);
       const mapProperties = {
         center: new google.maps.LatLng(location.lat, location.lng),
         zoom: 10,
