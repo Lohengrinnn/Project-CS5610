@@ -1,0 +1,13 @@
+.search {
+  display: flex;
+  align-content: center;
+  margin: 10px 15px 10px;
+}
+
+.search-input {
+  flex: 1;
+}
+
+.search-button {
+  width: 100px;
+}
