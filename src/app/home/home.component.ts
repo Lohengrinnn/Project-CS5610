@@ -12,7 +12,7 @@ import {ProductService} from "../../services/product.service";
 export class HomeComponent implements OnInit {
   // @ViewChild('map') public mapElement: ElementRef;
   // map: google.maps.Map;
-  products:Product[];
+  products:Product[] = [];
 
   constructor(private productService: ProductService, private mapService: MapService) { }
 

@@ -6,7 +6,7 @@ import { Product } from '../classes/product';
 })
 
 export class ProductService {
-  productUrl = "http://great-flea-market.herokuapp.com/products"
+  productUrl = "https://great-flea-market.herokuapp.com/products"
   //productUrl = "http://localhost:8080/products"
 
   constructor() {}
