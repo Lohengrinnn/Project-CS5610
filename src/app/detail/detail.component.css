@@ -1,0 +1,27 @@
+img {
+    width: 80%;
+    height: 50%;
+    margin-left: 10px;
+    margin-right: 10px;
+    justify-self: center;
+}
+
+.btn {
+    margin: 5px;
+}
+
+.products .name {
+    font-weight: bold;
+}
+
+.products .type {
+    color: #666;
+}
+
+.products .address {
+    margin-top: 5px;
+    padding-top: 5px;
+    border-top: 1px solid #dcdcdc;
+    font-style: italic;
+    font-size: 0.8em;
+}
