@@ -44,6 +44,17 @@ module.exports = (app) => {
       image: null,
       location: { lat: 37.549, lng: -121.911 },
     },
+    {
+      _id: 5,
+      name: 'Ford focus',
+      type: 'vehicle',
+      price: 100,
+      description: '2018 Ford focus',
+      address: '2157 Treewood Lane, San Jose, CA',
+      owner: 'Mary Green',
+      image: null,
+      location: { lat: 37.415, lng: -121.870307 },
+    },
   ];
 
   const findAllProducts = (req, res) => {

@@ -15,7 +15,10 @@
       <h3>Viewed</h3>
     </div>
     <div style="width:300px">
-      <div #map style="width:100%;height:300px"></div>
+      <div style="width:100%;height:300px">
+        <app-product-map [products]="products"></app-product-map>
+      </div>
+<!--      <div #map style="width:100%;height:300px"></div>-->
       <div class="dashboard">
         <p>users: 100</p>
         <p>products: 200</p>

@@ -10,11 +10,11 @@ import {ProductService} from "../../services/product.service";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  @ViewChild('map') public mapElement: ElementRef;
-  map: google.maps.Map;
-  products:Product[];
+  // @ViewChild('map') public mapElement: ElementRef;
+  // map: google.maps.Map;
+  products:Product[] = [];
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService, private mapService: MapService) { }
 
   ngOnInit(): void {
     this.productService.getProducts()
@@ -22,21 +22,17 @@ export class HomeComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.initGoogleMap();
+    // this.initGoogleMap();
   }
 
-  initGoogleMap() {
-    if(window.google){
-      const mapProperties = {
-        center: new google.maps.LatLng(37.33, -121.92),
-        zoom: 10,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      };
-      this.map = new google.maps.Map(this.mapElement.nativeElement, mapProperties);
-    } else {
-      setTimeout(() => {
-        this.initGoogleMap();
-      }, 2000);
-    }
-  }
+  // initGoogleMap() {
+  //   this.mapService.getGoogleMap().then(() => {
+  //     const mapProperties = {
+  //       center: new google.maps.LatLng(37.33, -121.92),
+  //       zoom: 10,
+  //       mapTypeId: google.maps.MapTypeId.ROADMAP
+  //     };
+  //     this.map = new google.maps.Map(this.mapElement.nativeElement, mapProperties);
+  //   });
+  // }
 }

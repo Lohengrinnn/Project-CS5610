@@ -9,24 +9,19 @@ import { Product } from '../../classes/product';
   styleUrls: ['./product-map.component.css'],
 })
 export class ProductMapComponent implements OnInit {
-  products: Product[];
+  @Input() products: Product[];
   @ViewChild('productMap') el: ElementRef;
 
   constructor(
-    private mapService: MapService,
-    private productService: ProductService
+    private mapService: MapService
   ) {
-    this.mapService = mapService;
-    this.productService = productService;
   }
 
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {
-    console.log('products', this.products);
     this.mapService.initMap(this.el).then(() => {
-      this.productService.getProducts()
-        .then(products => this.mapService.markProducts(this.products));
+      this.mapService.markProducts(this.products);
     });
   }
 }
