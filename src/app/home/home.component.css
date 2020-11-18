@@ -8,13 +8,6 @@
   flex: 1
 }
 
-header{
-	height: 400px;
-	background-size: cover;
-	background-position: center;
-	background-image: url("https://newsfeed.org/wp-content/uploads/Facebook-Marketplace.jpg");
-}
-
 @media screen and (max-width: 750px) {
   .dashboard {
     display: none;
