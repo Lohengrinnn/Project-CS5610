@@ -3,7 +3,7 @@ img {
     height: 50%;
     margin-left: 10px;
     margin-right: 10px;
-    justify-self: center;
+    text-align: center;
 }
 
 .btn {
@@ -16,6 +16,13 @@ img {
 
 .products .type {
     color: #666;
+}
+
+header{
+	height: 400px;
+	background-size: cover;
+	background-position: center;
+	background-image: url("https://newsfeed.org/wp-content/uploads/Facebook-Marketplace.jpg");
 }
 
 .products .address {
