@@ -1,14 +1,13 @@
 import {Injectable} from "@angular/core";
 
-const registerUrl = "http://localhost:8080/api/register"
-const loginUrl = "http://localhost:8080/api/login"
-const currentUserUrl = "http://localhost:8080/api/currentUser"
+const apiUrl = "http://localhost:8080/api"
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  register = (username, password) => fetch(registerUrl, {
+  isLogin = false;
+  register = (username, password) => fetch(`${apiUrl}/register`, {
       method: 'POST',
       credentials: 'include',
       body: JSON.stringify({username, password}),
@@ -16,18 +15,35 @@ export class UserService {
     })
 
   login = (username, password) =>
-    fetch(loginUrl, {
+    fetch(`${apiUrl}/login`, {
       method: 'POST',
       credentials: 'include',
       body: JSON.stringify({username, password}),
       headers: {
         'content-type': 'application/json'
       }
+    }).then(response => {
+      if (response.status != 403) {
+        this.isLogin = true;
+        return response.json();
+      } else {
+        return null;
+      }
     })
 
-  currentUser = () => fetch(currentUserUrl, {
-      method: 'POST',
-      credentials: 'include'
-    }).then(response => response.json())
+  logout = () => fetch(`${apiUrl}/logout`, {
+    method: 'POST',
+    credentials: 'include'
+  }).then(status => {
+    this.isLogin = false;
+    return status;
+  })
 
+  currentUser = () => fetch(`${apiUrl}/currentUser`, {
+    method: 'POST',
+    credentials: 'include'
+  }).then(response => {
+    console.log(`user.service.ts currentUser: ${JSON.stringify(response)}`);
+    return Object.keys(response).length !== 0 ? response.json() : null;
+  })
 }

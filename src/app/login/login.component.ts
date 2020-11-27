@@ -14,7 +14,13 @@ export class LoginComponent implements OnInit {
               private userService: UserService) { }
 
   login = () => this.userService.login(this.username, this.password)
-    .then(currentUser => this.router.navigate(['profile']))
+    .then(currentUser => {
+      if (currentUser === null) {
+        alert("login failed.")
+      } else {
+        this.router.navigate(['profile'])
+      }
+    })
 
   ngOnInit(): void {
   }
