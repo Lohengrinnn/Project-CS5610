@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-profile',
@@ -8,13 +9,19 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class ProfileComponent implements OnInit {
   userId: number = -1;
-  constructor(private activeRoute: ActivatedRoute) { }
+  user: any = {_id: '', username: '', password: '', email: '', address: ''}
+
+  constructor(private activeRoute: ActivatedRoute,
+              private userService: UserService) { }
 
   ngOnInit(): void {
     this.activeRoute.params.subscribe(params => {
       const uid = params.uid;
       if (typeof uid !== 'undefined') {
         this.userId = uid;
+      } else {
+        this.userService.currentUser().then(currentUser =>
+          this.user = currentUser)
       }
     });
   }

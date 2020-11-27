@@ -1,4 +1,4 @@
-import {AfterContentInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {} from 'googlemaps';
 import {Product} from "../../classes/product";
 import {MapService} from "../../services/map.service";
@@ -14,7 +14,8 @@ export class HomeComponent implements OnInit {
   // map: google.maps.Map;
   products:Product[] = [];
 
-  constructor(private productService: ProductService, private mapService: MapService) { }
+  constructor(private productService: ProductService,
+              private mapService: MapService) { }
 
   ngOnInit(): void {
     this.productService.getProducts()

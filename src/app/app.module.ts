@@ -13,6 +13,8 @@ import { ProductTableComponent } from './product-table/product-table.component';
 import { ProductGridComponent } from './product-grid/product-grid.component';
 import { ProductMapComponent } from './product-map/product-map.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import {FormsModule} from "@angular/forms";
+import {UserService} from "../services/user.service";
 
 @NgModule({
   declarations: [
@@ -30,9 +32,12 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
