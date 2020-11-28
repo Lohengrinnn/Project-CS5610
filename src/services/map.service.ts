@@ -31,7 +31,7 @@ export class MapService {
 
   initMap(mapElement) {
     return this.getGoogleMap().then(()=> this.getUserLocation()).then((location: GeoLocation) => {
-      console.log('my 222 location is', location);
+      console.log('initMap: my location is', location);
       const mapProperties = {
         center: new google.maps.LatLng(location.lat, location.lng),
         zoom: 10,
@@ -67,6 +67,7 @@ export class MapService {
   }
 
   markProduct(product: Product, map:any = this.map) {
+    console.log('markProduct' + JSON.stringify(product.location))
     const marker = new google.maps.Marker({
       map,
       position: product.location,
@@ -76,6 +77,5 @@ export class MapService {
     marker.addListener("click",  () => {
       infowindow.open(map, marker);
     });
-
   }
 }

@@ -22,13 +22,9 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.productService.getProducts()
-      .then(products => this.products = products)
-    // this.userService.currentUser().then(currentUser => {
-    //   console.log(currentUser);
-    //   if (currentUser) {
-    //     this.currentUser = currentUser
-    //   }
-    // })
+      .then(products => {
+        this.products = products;
+      })
   }
 
   ngAfterViewInit() {
