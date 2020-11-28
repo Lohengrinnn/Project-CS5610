@@ -21,6 +21,7 @@ const routes: Routes = [
   { path: "productmap", component: ProductMapComponent },
   { path: "publish", component: EditProductComponent },
   { path: "edit/:pid", component: EditProductComponent },
+  { path: "search/:searchField", component: SearchComponent },
 ];
 
 @NgModule({
