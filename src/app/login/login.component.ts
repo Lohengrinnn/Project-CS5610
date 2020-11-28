@@ -11,14 +11,17 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router,
               private userService: UserService) { }
 
-  login = (username, password) => this.userService.login(username, password)
-    .then(currentUser => {
-      if (currentUser === null) {
-        alert("login failed.")
-      } else {
-        this.router.navigate(['profile'])
-      }
-    })
+  login = (username, password) => {
+    this.userService.login(username, password)
+      .then(currentUser => {
+        if (currentUser === null) {
+          console.log("login failed.")
+          alert("login failed.")
+        } else {
+          this.router.navigate(['profile'])
+        }
+      })
+  }
 
   ngOnInit(): void {
   }

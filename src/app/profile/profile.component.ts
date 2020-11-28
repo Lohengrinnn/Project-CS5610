@@ -22,7 +22,6 @@ export class ProfileComponent implements OnInit {
         this.userId = uid;
       } else {
         this.userService.currentUser().then(currentUser => {
-          console.log(currentUser);
           if (currentUser) {
             this.user = currentUser
           } else {
