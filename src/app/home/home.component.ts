@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   // @ViewChild('map') public mapElement: ElementRef;
   // map: google.maps.Map;
   products:Product[] = [];
-  currentUser: any;
+  // currentUser: any;
 
   constructor(private productService: ProductService,
               private mapService: MapService,
@@ -23,12 +23,12 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.productService.getProducts()
       .then(products => this.products = products)
-    this.userService.currentUser().then(currentUser => {
-      console.log(currentUser);
-      if (currentUser) {
-        this.currentUser = currentUser
-      }
-    })
+    // this.userService.currentUser().then(currentUser => {
+    //   console.log(currentUser);
+    //   if (currentUser) {
+    //     this.currentUser = currentUser
+    //   }
+    // })
   }
 
   ngAfterViewInit() {

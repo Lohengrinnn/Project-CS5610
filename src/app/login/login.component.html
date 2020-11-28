@@ -3,21 +3,21 @@
   <div class="form-group row">
     <label for="username" class="col-sm-2 col-form-label">Username</label>
     <div class="col-sm-10">
-      <input [(ngModel)]="username" id="username" placeholder="alice" type="text" class="form-control"/>
+      <input #username id="username" placeholder="alice" type="text" class="form-control"/>
     </div>
   </div>
 
   <div class="form-group row">
     <label for="password" class="col-sm-2 col-form-label wbdv-field wbdv-password">Password</label>
     <div class="col-sm-10">
-      <input [(ngModel)]="password" id="password" type="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;" class="form-control"/>
+      <input #password id="password" type="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;" class="form-control"/>
     </div>
   </div>
 
   <div class="form-group row">
     <div class="col-sm-2"> </div>
     <div class="col-sm-10">
-      <a (click)="login()"
+      <a (click)="login(username.value, password.value)"
          class="btn btn-success btn-block">
         Sign in
       </a>

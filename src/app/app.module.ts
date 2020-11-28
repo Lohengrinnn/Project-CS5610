@@ -15,6 +15,7 @@ import { ProductMapComponent } from './product-map/product-map.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import {FormsModule} from "@angular/forms";
 import {UserService} from "../services/user.service";
+import { EditProductComponent } from './edit-product/edit-product.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {UserService} from "../services/user.service";
     ProductTableComponent,
     ProductGridComponent,
     ProductMapComponent,
-    PrivacyPolicyComponent
+    PrivacyPolicyComponent,
+    EditProductComponent
   ],
   imports: [
     BrowserModule,

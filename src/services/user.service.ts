@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 
-// const apiUrl = "http://localhost:8080/api"
+//const apiUrl = "http://localhost:8080/api"
 const apiUrl = "https://server-node-js-jiongwu.herokuapp.com/api"
 
 
@@ -8,7 +8,6 @@ const apiUrl = "https://server-node-js-jiongwu.herokuapp.com/api"
   providedIn: 'root',
 })
 export class UserService {
-  isLogin = false;
   register = (username, password) => fetch(`${apiUrl}/register`, {
       method: 'POST',
       credentials: 'include',
@@ -26,7 +25,7 @@ export class UserService {
       }
     }).then(response => {
       if (response.status != 403) {
-        this.isLogin = true;
+        localStorage.setItem('isLogin', 'true');
         return response.json();
       } else {
         return null;
@@ -37,7 +36,7 @@ export class UserService {
     method: 'POST',
     credentials: 'include'
   }).then(status => {
-    this.isLogin = false;
+    localStorage.setItem('isLogin', 'false');
     return status;
   })
 

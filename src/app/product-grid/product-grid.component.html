@@ -1,4 +1,11 @@
 <ul class="products">
+    <li *ngIf="publish">
+      <div class="plus">
+        <a routerLink="/publish">
+          <i class="fa fa-plus fa-2x text-primary"></i>
+        </a>
+      </div>
+    </li>
     <li *ngFor="let product of products">
         <div class="name">{{product.name}}</div>
         <div class="type">{{product.type}}</div>

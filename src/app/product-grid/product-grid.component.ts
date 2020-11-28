@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Product} from "../../classes/product";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-product-grid',
@@ -9,7 +10,7 @@ import {Product} from "../../classes/product";
 export class ProductGridComponent implements OnInit {
   @Input() products: Product[];
   @Input() publish: boolean = false;
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }

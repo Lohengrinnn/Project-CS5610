@@ -7,6 +7,7 @@ import {SearchComponent} from "./search/search.component";
 import {DetailComponent} from "./detail/detail.component";
 import {RegisterComponent} from "./register/register.component";
 import {ProductMapComponent} from "./product-map/product-map.component";
+import {EditProductComponent} from "./edit-product/edit-product.component";
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -18,6 +19,8 @@ const routes: Routes = [
   { path: "search", component: SearchComponent },
   { path: "detail", component: DetailComponent },
   { path: "productmap", component: ProductMapComponent },
+  { path: "publish", component: EditProductComponent },
+  { path: "edit/:pid", component: EditProductComponent },
 ];
 
 @NgModule({
