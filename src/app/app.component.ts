@@ -12,6 +12,7 @@ export class AppComponent {
   constructor(private userService: UserService,
               private router: Router) {
   }
+
   logout = () => this.userService.logout()
     .then(status => this.router.navigate(['']))
 }

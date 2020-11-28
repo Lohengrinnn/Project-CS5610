@@ -10,10 +10,13 @@ export class PrivacyPolicyComponent implements OnInit {
   constructor() { }
 
   close() {
+    localStorage.setItem('privacy', 'hidden');
     this.hidden = true;
   }
 
   ngOnInit(): void {
+    if (localStorage.getItem('privacy') === 'hidden')
+      this.hidden = true;
   }
 
 }
