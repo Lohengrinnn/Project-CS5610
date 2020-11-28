@@ -14,8 +14,11 @@ export class SearchComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute,
               private productService: ProductService) {
-    this.activatedRoute.params.subscribe(params =>
-      this.setParams(params)
+    this.activatedRoute.params.subscribe(params => {
+        this.setParams(params);
+        // reload component when params change
+        this.ngOnInit();
+      }
     );
   }
 

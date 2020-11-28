@@ -16,7 +16,7 @@ export class AppComponent {
 
   btnClick(searchField){
     console.log("btnClick: " + searchField);
-    this.router.navigateByUrl('/search/' + searchField);
+    this.router.navigateByUrl('/search/' + searchField + '?refresh=1');
   }
 
   logout = () => this.userService.logout()
