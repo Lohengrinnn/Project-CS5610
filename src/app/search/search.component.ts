@@ -26,6 +26,14 @@ export class SearchComponent implements OnInit {
 
   ngOnInit(): void {
     this.productService.getProducts()
-    .then(products => this.products = products);
+    .then(products => this.products = this.getMatchedProducts(products));
   }
+
+  getMatchedProducts(products) {
+    if (!this.searchField) {
+      return products;
+    }
+    return products.filter(product => product.name.includes(this.searchField));
+  }
+
 }
