@@ -12,10 +12,7 @@ export class ProductMapComponent implements OnInit {
   @Input() products: Product[];
   @ViewChild('productMap') el: ElementRef;
 
-  constructor(
-    private mapService: MapService
-  ) {
-  }
+  constructor(private mapService: MapService) {}
 
   ngOnInit(): void {}
 

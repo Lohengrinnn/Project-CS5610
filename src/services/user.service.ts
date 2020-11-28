@@ -24,6 +24,7 @@ export class UserService {
         'content-type': 'application/json'
       }
     }).then(response => {
+      console.log('login' + response.status);
       if (response.status != 403) {
         localStorage.setItem('isLogin', 'true');
         return response.json();
@@ -44,6 +45,7 @@ export class UserService {
     method: 'POST',
     credentials: 'include'
   }).then(response => {
+    console.log('currentUser' + response.status);
     if (response.status == 404)
       return null;
     return response.json();
