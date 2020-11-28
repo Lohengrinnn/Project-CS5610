@@ -33,7 +33,7 @@ export class SearchComponent implements OnInit {
     if (!this.searchField) {
       return products;
     }
-    return products.filter(product => product.name.includes(this.searchField));
+    return products.filter(product => product.name.toLowerCase().includes(this.searchField.toLowerCase()));
   }
 
 }
