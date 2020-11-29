@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: "profile", component: ProfileComponent },
   { path: "profile/:uid", component: ProfileComponent },
   { path: "search", component: SearchComponent },
-  { path: "detail", component: DetailComponent },
+  { path: "product/:pid", component: DetailComponent },
   { path: "productmap", component: ProductMapComponent },
   { path: "publish", component: EditProductComponent },
   { path: "edit/:pid", component: EditProductComponent },

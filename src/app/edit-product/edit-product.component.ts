@@ -54,7 +54,7 @@ export class EditProductComponent implements OnInit {
   ngOnInit(): void {
     this.userService.currentUser().then(currentUser => {
       if (currentUser) {
-        this.product.owner = currentUser._id;
+        this.product.owner._id = currentUser._id;
       } else {
         alert("You should login before publishing goods.");
         this.router.navigate(['login']);
