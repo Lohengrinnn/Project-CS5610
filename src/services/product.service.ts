@@ -24,7 +24,7 @@ export class ProductService {
     credentials: 'include',
     body: JSON.stringify(searchConditions),
     headers: { 'content-type': 'application/json' }
-  })
+  }).then(response => response.json())
 
   updateProduct = (product) => fetch(`${productUrl}/${product._id}`, {
     method: 'PUT',

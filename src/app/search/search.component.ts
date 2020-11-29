@@ -28,15 +28,15 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.productService.getProducts()
-    .then(products => this.products = this.getMatchedProducts(products));
-  }
-
-  getMatchedProducts(products) {
     if (!this.searchField) {
-      return products;
+      this.productService.getProducts().then(products => this.products = products);
+    } else {
+      this.productService.searchProduct({name: this.searchField})
+        .then(products => {
+          console.log("searched products: " + JSON.stringify(products));
+          this.products = products;
+        });
     }
-    return products.filter(product => product.name.toLowerCase().includes(this.searchField.toLowerCase()));
   }
 
 }
