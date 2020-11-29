@@ -28,7 +28,6 @@ export class ProductMapComponent implements OnInit {
   markProducts(): void {
     if(this.products.length && this.mapInited){
       this.mapService.markProducts(this.products);
-      this.productsMarked = true;
     }
   }
 
