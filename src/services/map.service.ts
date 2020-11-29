@@ -46,10 +46,11 @@ export class MapService {
     return new Promise((resolve) => {
       navigator.geolocation.getCurrentPosition(
         (location: any) => {
-          resolve({
-            lat: location.coords.latitude,
-            lng: location.coords.longitude,
-          });
+          // resolve({
+          //   lat: location.coords.latitude,
+          //   lng: location.coords.longitude,
+          // });
+          resolve(defaultLocation);
         },
         () => {
           resolve(defaultLocation);

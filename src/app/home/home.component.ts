@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.productService.getProducts()
       .then(products => {
-        console.log(JSON.stringify(products))
+        // console.log(JSON.stringify(products))
         this.products = products;
       })
   }
