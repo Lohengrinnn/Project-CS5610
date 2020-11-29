@@ -8,7 +8,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./product-grid.component.css']
 })
 export class ProductGridComponent implements OnInit {
-  @Input() products: Product[];
+  @Input() products: any[];
   @Input() publish: boolean = false;
   constructor(private router: Router) { }
 
