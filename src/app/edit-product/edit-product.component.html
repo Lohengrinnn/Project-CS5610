@@ -1,9 +1,47 @@
-<h6>name <input [(ngModel)]="product.name" type="text"/></h6>
-<h6>type <input [(ngModel)]="product.type" type="text"/></h6>
-<h6>price <input [(ngModel)]="product.price" type="number"/></h6>
-<h6>description <input [(ngModel)]="product.description" type="text"/></h6>
-<h6>address <input [(ngModel)]="product.address" type="text"/></h6>
-<h6>lat <input [(ngModel)]="product.location.lat" type="number"/></h6>
-<h6>lng <input [(ngModel)]="product.location.lng" type="number"/></h6>
+<!--<h6>name <input [(ngModel)]="product.name" type="text"/></h6>-->
+<!--<h6>type <input [(ngModel)]="product.type" type="text"/></h6>-->
+<!--<h6>price <input [(ngModel)]="product.price" type="number"/></h6>-->
+<!--<h6>description <input [(ngModel)]="product.description" type="text"/></h6>-->
+<!--<h6>address <input [(ngModel)]="product.address" type="text"/></h6>-->
+<!--<h6>lat <input [(ngModel)]="product.location.lat" type="number"/></h6>-->
+<!--<h6>lng <input [(ngModel)]="product.location.lng" type="number"/></h6>-->
 
-<button (click)="save()">Save</button>
+<!--<button (click)="save()">Save</button>-->
+
+<div class="row justify-content-center">
+  <div class="col-10 col-sm-5">
+    <form>
+      <div class="form-group">
+        <label>Name</label>
+        <input class="form-control" [(ngModel)]="product.name" type="text"/>
+      </div>
+      <div class="form-group">
+        <label>Type</label>
+        <input class="form-control" [(ngModel)]="product.type" type="text"/>
+      </div>
+      <div class="form-group">
+        <label>Price</label>
+        <input class="form-control" [(ngModel)]="product.price" type="number"/>
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <input class="form-control" [(ngModel)]="product.description" type="text"/>
+      </div>
+      <div class="form-group">
+        <label>Address</label>
+        <input class="form-control" [(ngModel)]="product.address" type="text"/>
+      </div>
+      <div class="form-group">
+        <label>Lat</label>
+        <input class="form-control" [(ngModel)]="product.location.lat" type="text"/>
+      </div>
+      <div class="form-group">
+        <label>Long</label>
+        <input class="form-control" [(ngModel)]="product.location.lng" type="text"/>
+    </div>
+      <div class="form-group">
+        <button (click)="save()" class="btn btn-lg btn-primary btn-block">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
