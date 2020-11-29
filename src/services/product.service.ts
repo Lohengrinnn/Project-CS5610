@@ -9,12 +9,26 @@ const productUrl = "https://server-node-js-jiongwu.herokuapp.com/api/products"
 })
 export class ProductService {
   getProducts = () =>
-    fetch(productUrl).then(response => response.json())
+    fetch(productUrl, {
+      credentials: 'include',
+    }).then(response => response.json())
 
   createProduct = (newProduct) => fetch(productUrl, {
     method: 'POST',
     credentials: 'include',
     body: JSON.stringify(newProduct),
     headers: { 'content-type': 'application/json' }
+  })
+
+  updateProduct = (product) => fetch(`${productUrl}/${product._id}`, {
+    method: 'PUT',
+    credentials: 'include',
+    body: JSON.stringify(product),
+    headers: { 'content-type': 'application/json' }
+  })
+
+  deleteProduct = (productId) => fetch(`${productUrl}/${productId}`, {
+    method: 'DELETE',
+    credentials: 'include',
   })
 }
