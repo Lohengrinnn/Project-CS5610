@@ -20,6 +20,13 @@ export class ProductService {
     headers: { 'content-type': 'application/json' }
   })
 
+  searchProduct = (searchConditions) => fetch(productUrl+'/search', {
+    method: 'POST',
+    credentials: 'include',
+    body: JSON.stringify(searchConditions),
+    headers: { 'content-type': 'application/json' }
+  })
+
   updateProduct = (product) => fetch(`${productUrl}/${product._id}`, {
     method: 'PUT',
     credentials: 'include',
