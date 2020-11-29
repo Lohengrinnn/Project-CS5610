@@ -12,6 +12,8 @@ const defaultLocation = {
 })
 export class MapService {
   map: any;
+  geocoder = new google.maps.Geocoder();
+  location;
 
   constructor() {}
 
@@ -39,6 +41,17 @@ export class MapService {
       };
       this.map = new google.maps.Map(mapElement.nativeElement, mapProperties);
       return this.map;
+    });
+  }
+
+  getLongLatByAddress(address) {
+    this.geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == 'OK') {
+        console.log("LatLng: "  + results[0].geometry.location);
+        this.location = results[0].geometry.location;
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
     });
   }
 
