@@ -31,7 +31,7 @@ export class MapService {
 
   initMap(mapElement) {
     return this.getGoogleMap().then(()=> this.getUserLocation()).then((location: GeoLocation) => {
-      console.log('initMap: my location is', location);
+      console.log('initMap: my location is', JSON.stringify(location));
       const mapProperties = {
         center: new google.maps.LatLng(location.lat, location.lng),
         zoom: 10,
@@ -46,11 +46,10 @@ export class MapService {
     return new Promise((resolve) => {
       navigator.geolocation.getCurrentPosition(
         (location: any) => {
-          // resolve({
-          //   lat: location.coords.latitude,
-          //   lng: location.coords.longitude,
-          // });
-          resolve(defaultLocation);
+          resolve({
+            lat: location.coords.latitude,
+            lng: location.coords.longitude,
+          });
         },
         () => {
           resolve(defaultLocation);

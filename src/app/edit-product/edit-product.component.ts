@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {Product} from "../../classes/product";
 import {ProductService} from "../../services/product.service";
 import {UserService} from "../../services/user.service";
 import {ActivatedRoute, Router} from '@angular/router';
@@ -26,14 +25,30 @@ export class EditProductComponent implements OnInit {
     address: '',
     location: { lat: 0, lng: 0 },
   };
+  currentUser: any;
+  image: any;
 
   constructor(private productService: ProductService,
               private userService: UserService,
               private router: Router,
               private activatedRoute: ActivatedRoute) {}
+
+  selectImage(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      // console.log(JSON.stringify(file))
+      this.image = file;
+    }
+  }
+
   create() {
-    this.productService.createProduct(this.product)
-      .then(actualProduct => this.router.navigate(['detail']));
+    // console.log("create: " + JSON.stringify(this.product));
+    this.productService.createProductImg(this.product, this.image).subscribe(
+      (res) => console.log(res),
+      (err) => console.log(err)
+    );
+    // this.productService.createProduct(this.product);
+    // .then(actualProduct => this.router.navigateByUrl("/detail/${actualProduct._id}"));
   }
 
   update() {
@@ -43,18 +58,19 @@ export class EditProductComponent implements OnInit {
 
   // invoke either create or update function
   save() {
-    if (this.product._id === ''){
-      this.create();
-    }
-    else{
+    this.product.owner = this.currentUser._id;
+    if (this.product._id){
       this.update();
+    } else{
+      this.create();
     }
   }
 
   ngOnInit(): void {
     this.userService.currentUser().then(currentUser => {
       if (currentUser) {
-        this.product.owner._id = currentUser._id;
+        this.currentUser = currentUser;
+        console.log("current user: " + this.currentUser._id)
       } else {
         alert("You should login before publishing goods.");
         this.router.navigate(['login']);
@@ -63,9 +79,10 @@ export class EditProductComponent implements OnInit {
 
     this.activatedRoute.params.subscribe(params => {
       const productId = params.pid;
-      this.productService.findProductById(productId)
-        .then(product => this.product = product);
+      if (productId !== undefined) {
+        this.productService.findProductById(productId)
+          .then(product => this.product = product);
+      }
     });
   }
-
 }

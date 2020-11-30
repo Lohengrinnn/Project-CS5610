@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Product} from "../../classes/product";
 import {Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-product-grid',
@@ -13,5 +13,13 @@ export class ProductGridComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges(changes) {
+    this.products = changes.products.currentValue;
+    this.products.forEach(product => {
+      product.images[0].base64 = btoa(product.images[0].data.data)
+      console.log(product.images[0].contentType + " " + product.images[0].base64.length)
+    })
   }
 }
