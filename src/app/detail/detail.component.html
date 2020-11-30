@@ -55,6 +55,12 @@
             <input class="rounded-pill text-center bg-light" type="text" value="Is this still available?">
             <br>
             <button class="btn btn-success btn-block rounded-pill">SEND</button>
+              <button
+                class="btn btn-warning btn-block rounded-pill"
+                [hidden]="!this.productOwner">
+                <a routerLink="edit/{{product._id}}"></a>
+                EDIT
+              </button>
             </div>
         </div>
         <div class="col-8 d-flex justify-content-center align-items-center">
