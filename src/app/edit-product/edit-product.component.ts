@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {Product} from "../../classes/product";
 import {ProductService} from "../../services/product.service";
 import {UserService} from "../../services/user.service";
 import {Router} from "@angular/router";
@@ -11,21 +10,35 @@ import {Router} from "@angular/router";
 })
 export class EditProductComponent implements OnInit {
   product: any = {
-    name: 'Harry Potter II',
+    name: 'Harry Potter I',
     type: 'book',
     price: 100,
     description: 'Harry Potter',
-    address: '276 Sun Ridge Lane, San Jose, CA',
-    location: { lat: 45.4115777, lng: -73.01792759999999 },
+    address: '11203 Sun Spike Road, South Lake Tahoe, CA',
+    location: { lat: 38.9115777, lng: -119.91792759999999 },
   }
+  image: any;
 
   constructor(private productService: ProductService,
               private userService: UserService,
               private router: Router) { }
 
+  selectImage(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      console.log(JSON.stringify(file))
+      this.image = file;
+    }
+  }
   save() {
-    this.productService.createProduct(this.product)
-      .then(actualProduct => this.router.navigate(['detail']));
+    this.productService.createProductImg(this.product, this.image)
+      .subscribe(
+        (res) => console.log(res),
+        (err) => console.log(err)
+      );
+    // console.log(JSON.stringify(this.product))
+    // this.productService.createProduct(this.product)
+    //   .then(actualProduct => this.router.navigateByUrl("/detail/${actualProduct._id}"));
   }
 
   ngOnInit(): void {

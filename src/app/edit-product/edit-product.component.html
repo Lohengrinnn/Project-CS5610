@@ -5,5 +5,10 @@
 <h6>address <input [(ngModel)]="product.address" type="text"/></h6>
 <h6>lat <input [(ngModel)]="product.location.lat" type="number"/></h6>
 <h6>lng <input [(ngModel)]="product.location.lng" type="number"/></h6>
+<div>
+  <label for="image">Upload Image</label>
+  <input type="file" id="image" name="image" multiple required
+         (change)="selectImage($event)" />
+</div>
 
 <button (click)="save()">Save</button>

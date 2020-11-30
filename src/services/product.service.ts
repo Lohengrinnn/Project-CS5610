@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
-// const productUrl = 'http://localhost:8080/api/products';
-const productUrl = "https://server-node-js-jiongwu.herokuapp.com/api/products"
+const productUrl = 'http://localhost:8080/api/products';
+// const productUrl = "https://server-node-js-jiongwu.herokuapp.com/api/products"
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
+  constructor(private http: HttpClient) { }
+
   getProducts = () =>
     fetch(productUrl, {
       credentials: 'include',
@@ -37,4 +40,24 @@ export class ProductService {
     method: 'DELETE',
     credentials: 'include',
   })
+
+  // Create User
+  createProductImg(newProduct: any, image) {
+    let formData: any = new FormData();
+    for (let key in newProduct){
+      let val = newProduct[key];
+      if (key === "location") {
+        formData.append(key, JSON.stringify(val));
+      } else {
+        formData.append(key, val);
+      }
+    }
+    formData.append("image", image);
+    let headers = new HttpHeaders({
+      // 'Content-Type': 'multipart/form-data',
+      'Accept' : 'application/json'
+    });
+    let options = { 'headers': headers }
+    return this.http.post<any>(productUrl, formData, options)
+  }
 }

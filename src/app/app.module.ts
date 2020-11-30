@@ -16,6 +16,8 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
 import {FormsModule} from "@angular/forms";
 import {UserService} from "../services/user.service";
 import { EditProductComponent } from './edit-product/edit-product.component';
+import {CommonModule} from "@angular/common";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { EditProductComponent } from './edit-product/edit-product.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    CommonModule
   ],
   providers: [
     UserService
