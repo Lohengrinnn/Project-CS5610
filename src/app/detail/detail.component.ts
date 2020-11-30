@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../services/user.service';
 import {ProductService} from '../../services/product.service';
-
 import {ActivatedRoute} from "@angular/router";
 
 @Component({
@@ -34,7 +33,6 @@ export class DetailComponent implements OnInit {
         this.productOwner = true;
       }
     });
-
     this.activatedRoute.params.subscribe(params => {
       const productId = params.pid;
       if (productId !== undefined) {
