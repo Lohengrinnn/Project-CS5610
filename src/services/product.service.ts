@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 
-const productUrl = 'http://localhost:8080/api/products';
-// const productUrl = "https://server-node-js-jiongwu.herokuapp.com/api/products"
+// const productUrl = 'http://localhost:8080/api/products';
+const productUrl = "https://server-node-js-jiongwu.herokuapp.com/api/products"
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +14,11 @@ export class ProductService {
     fetch(productUrl, {
       credentials: 'include',
     }).then(response => response.json())
+
+
+  findProductById = (productId) =>
+    fetch(`https://great-flea-market.herokuapp.com/products/${productId}`)
+      .then(response => response.json())
 
   createProduct = (newProduct) => fetch(productUrl, {
     method: 'POST',
