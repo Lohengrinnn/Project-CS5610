@@ -3,7 +3,6 @@ import {Injectable} from "@angular/core";
 const apiUrl = "http://localhost:8080/api"
 // const apiUrl = "https://server-node-js-jiongwu.herokuapp.com/api"
 
-
 @Injectable({
   providedIn: 'root',
 })
@@ -45,10 +44,9 @@ export class UserService {
     method: 'POST',
     credentials: 'include'
   }).then(response => {
-    console.log('currentUser' + response.status);
+    // console.log('currentUser' + response.status);
     if (response.status == 404)
       return null;
     return response.json();
-    // return Object.keys(response).length !== 0 ? response.json() : null;
   })
 }

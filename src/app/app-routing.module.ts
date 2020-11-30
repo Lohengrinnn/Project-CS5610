@@ -18,9 +18,11 @@ const routes: Routes = [
   { path: "profile/:uid", component: ProfileComponent },
   { path: "search", component: SearchComponent },
   { path: "product/:pid", component: DetailComponent },
+  { path: "detail/:pid", component: DetailComponent },
   { path: "productmap", component: ProductMapComponent },
   { path: "publish", component: EditProductComponent },
   { path: "edit/:pid", component: EditProductComponent },
+  { path: "search/:searchField", component: SearchComponent },
 ];
 
 @NgModule({

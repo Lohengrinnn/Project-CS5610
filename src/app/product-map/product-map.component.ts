@@ -11,14 +11,28 @@ import { Product } from '../../classes/product';
 export class ProductMapComponent implements OnInit {
   @Input() products: Product[];
   @ViewChild('productMap') el: ElementRef;
+  mapInited: boolean = false;
 
   constructor(private mapService: MapService) {}
 
   ngOnInit(): void {}
 
+
   ngAfterViewInit(): void {
     this.mapService.initMap(this.el).then(() => {
+      this.mapInited = true;
+      this.markProducts()
+    })
+  }
+
+  markProducts(): void {
+    if(this.products.length && this.mapInited){
       this.mapService.markProducts(this.products);
-    });
+    }
+  }
+
+  ngOnChanges(changes) {
+    this.products = changes.products.currentValue;
+    this.markProducts();
   }
 }

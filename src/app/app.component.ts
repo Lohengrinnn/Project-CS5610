@@ -9,8 +9,14 @@ import {Router} from "@angular/router";
 })
 export class AppComponent {
   title = 'Flea Market';
+
   constructor(private userService: UserService,
               private router: Router) {
+  }
+
+  btnClick(searchField){
+    console.log("btnClick: " + searchField);
+    this.router.navigateByUrl('/search/' + searchField);
   }
 
   logout = () => this.userService.logout()
