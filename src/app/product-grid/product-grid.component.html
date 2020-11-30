@@ -19,10 +19,9 @@
       </div>
       <div class="type">{{product.type}}</div>
       <div class="price">${{product.price}}</div>
-      <div class="address">{{product.address}}</div>
       <div class="image">
-        <img src="data:{{product.images[0].contentType}};base64,{{product.images[0].data.data}}"/>
-        <img src="data:{{product.images[0].contentType}};base64,{{product.images[0].base64}}"/>
+        <img class="image" src="data:{{product.images[0].contentType}};base64,{{product.image}}"/>
       </div>
+      <div class="address">{{product.address}}</div>
     </li>
 </ul>

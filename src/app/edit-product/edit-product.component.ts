@@ -43,7 +43,7 @@ export class EditProductComponent implements OnInit {
 
   create() {
     // console.log("create: " + JSON.stringify(this.product));
-    this.productService.createProductImg(this.product, this.image).subscribe(
+    this.productService.createProduct(this.product, this.image).subscribe(
       (res) => console.log(res),
       (err) => console.log(err)
     );
