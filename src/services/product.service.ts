@@ -14,17 +14,9 @@ export class ProductService {
 
 
   findProductById = (productId) =>
-    fetch(`https://great-flea-market.herokuapp.com/products/${productId}`)
+    fetch(`https://server-node-js-jiongwu.herokuapp.com/api/products/${productId}`)
+  // fetch(`https://great-flea-market.herokuapp.com/products/${productId}`)
       .then(response => response.json())
-
-  updateProduct = (product) =>
-    fetch(`https://great-flea-market.herokuapp.com/products/${product._id}`, {
-      method: 'PUT',
-      body: JSON.stringify(product),
-      headers: {
-        'content-type': 'application/json'
-      }
-    })
 
   createProduct = (newProduct) => fetch(productUrl, {
     method: 'POST',

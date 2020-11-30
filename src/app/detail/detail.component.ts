@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../services/user.service';
 import {ProductService} from '../../services/product.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-detail',
@@ -20,6 +21,8 @@ export class DetailComponent implements OnInit {
   productOwner = false;
 
   constructor(private userService: UserService,
+              private activatedRoute: ActivatedRoute,
+              private productService: ProductService
   ) {
   }
 
@@ -29,6 +32,13 @@ export class DetailComponent implements OnInit {
       if (currentUser && currentUser._id === this.product.owner) {
         this.productOwner = true;
       }
+    });
+
+    this.activatedRoute.params.subscribe(params => {
+      const productId = params.pid;
+      console.log(productId);
+      this.productService.findProductById(productId)
+        .then(product => this.product = product);
     });
   }
 }
