@@ -17,7 +17,7 @@ export class ProductService {
 
 
   findProductById = (productId) =>
-    fetch(`https://great-flea-market.herokuapp.com/products/${productId}`)
+    fetch(`${productUrl}/${productId}`)
       .then(response => response.json())
 
   createProduct = (newProduct) => fetch(productUrl, {
