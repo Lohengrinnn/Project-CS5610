@@ -16,6 +16,8 @@ export class ProductGridComponent implements OnInit {
   }
 
   ngOnChanges(changes) {
-    this.products = changes.products.currentValue;
+    this.products = changes.products.currentValue.map(product => (
+      {...product, ...{base64: `data:${product.images[0].contentType};base64,${product.image}`}}
+    ));
   }
 }

@@ -19,9 +19,7 @@
       </div>
       <div class="type">{{product.type}}</div>
       <div class="price">${{product.price}}</div>
-      <div class="image">
-        <img class="image" src="data:{{product.images[0].contentType}};base64,{{product.image}}"/>
-      </div>
+      <div class="image" style="background-image: url('{{product.base64}}')"></div>
       <div class="address">{{product.address}}</div>
     </li>
 </ul>
