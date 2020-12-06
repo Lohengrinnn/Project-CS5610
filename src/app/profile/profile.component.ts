@@ -36,6 +36,7 @@ export class ProfileComponent implements OnInit {
 
   // we should only allow a user to update its own profile
   update() {
+    console.log("to update user with: " + JSON.stringify(this.user));
     this.userService.updateUser(this.user)
       .then(status => console.log('update status is ' + status));
   }
