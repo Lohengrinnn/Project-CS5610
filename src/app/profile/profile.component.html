@@ -60,7 +60,7 @@
   <div [hidden]="userId!=-1" class="form-group row">
     <label for="dob" class="col-sm-2 col-form-label">Date of Birth</label>
     <div class="col-sm-10">
-      <input #dob id="dob" value="mm/dd/yyyy" type="date" [(ngModel)]="user.date"
+      <input #dob id="dob" placeholder="yyyy-MM-dd" type="date" [(ngModel)]="user.date"
              class="form-control wbdv-field wbdv-dob"/>
     </div>
   </div>
