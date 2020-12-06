@@ -49,4 +49,11 @@ export class UserService {
       return null;
     return response.json();
   })
+
+  updateUser = (user) => fetch(`${apiUrl}/updateUser/${user._id}`, {
+    method: 'PUT',
+    credentials: 'include',
+    body: JSON.stringify(user),
+    headers: { 'content-type': 'application/json' }
+  })
 }

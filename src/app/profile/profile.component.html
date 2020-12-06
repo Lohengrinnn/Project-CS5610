@@ -4,11 +4,23 @@
   <div class="form-group row">
     <label for="username" class="col-sm-2 col-form-label">Username</label>
     <div class="col-sm-10">
-      <input [hidden]="userId!=-1" id="username" value="Alice" type="text"
-             class="form-control"/>
+      <input [hidden]="userId!=-1" #username id="username" value="Alice" type="text"
+             [(ngModel)]="user.username" class="form-control"/>
       <label [hidden]="userId==-1"
              class="col-form-label">Alice</label>
     </div>
+
+    <!--
+      user: any = {_id: '', username: '', password: '', email: '', address: ''}
+
+    <div class="form-group row">
+      <label for="username" class="col-sm-2 col-form-label">Username</label>
+      <div class="col-sm-10">
+        <input #username id="username" class="form-control" [(ngModel)]="user.username" type="text"/>
+      </div>
+    </div>
+    -->
+
   </div>
 
   <div [hidden]="userId!=-1" class="form-group row">
@@ -51,9 +63,8 @@
   <div [hidden]="userId!=-1" class="form-group row">
     <div class="col-sm-2"></div>
     <div class="col-sm-10">
-      <button class="btn btn-success btn-block wbdv-button wbdv-update">
-        Update
-      </button>
+      <button (click)="update()" class="btn btn-lg btn-success btn-block">Update</button>
     </div>
   </div>
+
 </div>

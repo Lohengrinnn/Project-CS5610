@@ -8,8 +8,10 @@ import {UserService} from "../../services/user.service";
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  // this is the user id of the profile page
   userId: number = -1;
-  user: any = {_id: '', username: '', password: '', email: '', address: ''}
+  // the user who is looking at this profile page
+  user: any = {_id: '', username: '', password: '', email: '', address: '', phone: '', role: '', dob: ''};
 
   constructor(private router: Router,
               private activeRoute: ActivatedRoute,
@@ -23,12 +25,19 @@ export class ProfileComponent implements OnInit {
       } else {
         this.userService.currentUser().then(currentUser => {
           if (currentUser) {
-            this.user = currentUser
+            this.user = currentUser;
           } else {
-            this.router.navigate(['login'])
+            this.router.navigate(['login']);
           }
         })
       }
     });
   }
+
+  // we should only allow a user to update its own profile
+  update() {
+    this.userService.updateUser(this.user)
+      .then(status => console.log('update status is ' + status));
+  }
+
 }
