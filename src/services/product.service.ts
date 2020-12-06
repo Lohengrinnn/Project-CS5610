@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 
-// const productUrl = 'http://localhost:8080/api/products';
+//const productUrl = 'http://localhost:8080/api/products';
 const productUrl = "https://server-node-js-jiongwu.herokuapp.com/api/products"
 
 @Injectable({

@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 
-// const apiUrl = "http://localhost:8080/api"
+//const apiUrl = "http://localhost:8080/api"
 const apiUrl = "https://server-node-js-jiongwu.herokuapp.com/api"
 
 @Injectable({
@@ -48,5 +48,12 @@ export class UserService {
     if (response.status == 404)
       return null;
     return response.json();
+  })
+
+  updateUser = (user) => fetch(`${apiUrl}/updateUser/${user._id}`, {
+    method: 'PUT',
+    credentials: 'include',
+    body: JSON.stringify(user),
+    headers: { 'content-type': 'application/json' }
   })
 }
