@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 
-const apiUrl = "http://localhost:8080/api"
-// const apiUrl = "https://server-node-js-jiongwu.herokuapp.com/api"
+//const apiUrl = "http://localhost:8080/api"
+const apiUrl = "https://server-node-js-jiongwu.herokuapp.com/api"
 
 @Injectable({
   providedIn: 'root',
