@@ -9,9 +9,11 @@ import {UserService} from "../../services/user.service";
 })
 export class EditProfileComponent implements OnInit {
   // this is the user id of the profile page
-  userId: number = -1;
+  profileId: undefined;
   // the user who is looking at this profile page
   user: any = {_id: '', username: '', password: '', email: '', address: '', phone: '', role: '', dob: ''};
+  profileOwner = false;
+  currentUserId: undefined;
 
   constructor(private router: Router,
               private activeRoute: ActivatedRoute,
@@ -21,16 +23,22 @@ export class EditProfileComponent implements OnInit {
     this.activeRoute.params.subscribe(params => {
       const uid = params.uid;
       if (typeof uid !== 'undefined') {
-        this.userId = uid;
-      } else {
-        this.userService.currentUser().then(currentUser => {
-          if (currentUser) {
-            this.user = currentUser;
-          } else {
-            this.router.navigate(['login']);
-          }
-        })
+        this.profileId = uid;
       }
+
+      this.userService.currentUser().then(currentUser => {
+        if (currentUser) {
+          this.currentUserId = currentUser._id;
+          if (this.currentUserId === this.profileId) {
+            this.profileOwner = true;
+            console.log("productOwner is true");
+            this.user = currentUser;
+          }
+        } else {
+          this.router.navigate(['login']);
+        }
+      })
+
     });
   }
 
