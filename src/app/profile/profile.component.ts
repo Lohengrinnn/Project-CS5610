@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../services/user.service";
+import {Product} from '../../classes/product';
+import {ProductService} from '../../services/product.service';
 
 @Component({
   selector: 'app-profile',
@@ -14,8 +16,10 @@ export class ProfileComponent implements OnInit {
   user: any = {_id: '', username: '', password: '', email: '', address: '', phone: '', role: '', dob: ''};
   currentUserId: undefined;
   profileOwner = false;
+  products:Product[] = [];
 
   constructor(private router: Router,
+              private productService: ProductService,
               private activeRoute: ActivatedRoute,
               private userService: UserService) { }
 
@@ -42,6 +46,14 @@ export class ProfileComponent implements OnInit {
           this.profileOwner = true;
           console.log("productOwner is true");
         }
+
+        this.productService.getProducts()
+          .then(products => {
+            console.log("Products: " + JSON.stringify(products));
+            this.products = products;
+            //this.products = products.map(product => product.owner._id === this.profileId);
+            //this.products = products.map(product => product.owner._id === this.profileId);
+          });
 
         if (!this.profileOwner && this.profileId) {
           console.log("fetch profile as the user is not current user");
