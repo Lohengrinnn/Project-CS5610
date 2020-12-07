@@ -20,9 +20,8 @@ export class DetailComponent implements OnInit {
     // owner: ''
   };
   currentUser: any = {
-    role: "BUYER"
   };
-  productOwner = false;
+  productOwner = true;
   anonymousUser = false;
 
 
@@ -39,8 +38,12 @@ export class DetailComponent implements OnInit {
     this.userService.currentUser().then(currentUser => {
       // check if user is log in and product belong to the user
       this.currentUser = currentUser;
-      if (currentUser && currentUser._id === this.product.owner) {
+      if (this.currentUser && this.currentUser._id === this.product.owner) {
         this.productOwner = true;
+      }
+      // user not logged in
+      if (this.currentUser === null){
+        this.anonymousUser = true;
       }
     });
 
@@ -51,17 +54,8 @@ export class DetailComponent implements OnInit {
           .then(product => {
             this.product = product;
             this.product = {...this.product, ...{base64: `data:${product.images[0].contentType};base64,${product.image}`}};
-            console.log(this.product);
-            if (this.currentUser && this.currentUser._id === this.product.owner) {
-              this.productOwner = true;
-            }
           });
       }
     });
-
-    // check for anonymous user
-    if (this.currentUser.username === null){
-      this.anonymousUser = true;
-    }
   }
 }

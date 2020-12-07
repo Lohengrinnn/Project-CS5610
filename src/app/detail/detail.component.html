@@ -57,23 +57,19 @@
             <br>
               <button
               class="btn btn-success btn-block rounded-pill"
-              [hidden]="anonymousUser && currentUser.role === 'SELLER'">BUY
-              </button>
-              <button
-                class="btn btn-warning btn-block rounded-pill"
-                [hidden]="!productOwner || anonymousUser">
-                <a routerLink="edit/{{product._id}}"></a>
-                EDIT
-              </button>
-              <button
+              [hidden]="anonymousUser || currentUser.role === 'SELLER'">BUY</button>
+              <a
+                  class="btn btn-warning btn-block rounded-pill"
+                  [hidden]="!productOwner || anonymousUser"
+                  routerLink="/edit/{{product._id}}">EDIT</a>
+
+              <a routerLink="/home"
                 class="btn btn-danger btn-block rounded-pill"
                 [hidden]="!productOwner || anonymousUser"
                 (click)="deleteProduct(product._id)"
                 >
-                <a routerLink="home"></a>
                 DELETE
-              </button>
-
+              </a>
             </div>
         </div>
         <div class="col-8 d-flex justify-content-center align-items-center">
