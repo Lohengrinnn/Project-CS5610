@@ -49,9 +49,9 @@ export class ProfileComponent implements OnInit {
 
         this.productService.getProducts()
           .then(products => {
+            console.log("profile id is  " + this.profileId);
             console.log("Products: " + JSON.stringify(products));
-            this.products = products;
-            //this.products = products.map(product => product.owner._id === this.profileId);
+            this.products = products.filter(product => product.owner._id === this.profileId);
             //this.products = products.map(product => product.owner._id === this.profileId);
           });
 
