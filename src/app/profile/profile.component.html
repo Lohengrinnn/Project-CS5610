@@ -17,11 +17,12 @@
     <div [hidden]=!profileOwner>Phone: {{user.phone}}</div>
   </div>
 
-  <button
-    class="btn btn-warning btn-block rounded-pill"
-    [hidden]="!profileOwner">
-    <a routerLink="edit_profile/{{user._id}}">EDIT</a>
-  </button>
+  <div [hidden]=!profileOwner class="form-group row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-10">
+      <button (click)="update()" class="btn btn-lg btn-success btn-block">Update</button>
+    </div>
+  </div>
 
 
 </div>
