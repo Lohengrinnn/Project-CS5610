@@ -52,12 +52,14 @@ export class EditProductComponent implements OnInit {
   }
 
   update() {
+    console.log("updating product")
     this.productService.updateProduct(this.product)
       .then(actualProduct => this.router.navigate(['detail']));
   }
 
   // invoke either create or update function
   save() {
+    console.log("saving product updates")
     this.product.owner = this.currentUser._id;
     if (this.product._id){
       this.update();

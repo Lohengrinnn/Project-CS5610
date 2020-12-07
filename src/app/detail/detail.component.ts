@@ -22,6 +22,7 @@ export class DetailComponent implements OnInit {
   };
   currentUser: any;
   productOwner = false;
+  image: any;
 
   constructor(private userService: UserService,
               private productService: ProductService,
@@ -45,6 +46,10 @@ export class DetailComponent implements OnInit {
         this.productService.findProductById(productId)
           .then(product => {
             this.product = product;
+            // this.product = (
+            //   {...product, ...{base64: `data:${product.images[0].contentType};base64,${product.image}`}}
+            // );
+            this.image = product.images[0].data.toString('base64');
             console.log("product is: " + JSON.stringify(product));
             if (this.currentUser && this.currentUser._id === this.product.owner) {
               this.productOwner = true;
