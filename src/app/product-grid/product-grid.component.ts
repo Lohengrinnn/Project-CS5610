@@ -16,10 +16,8 @@ export class ProductGridComponent implements OnInit {
   }
 
   ngOnChanges(changes) {
-    this.products = changes.products.currentValue;
-    this.products.forEach(product => {
-      product.images[0].base64 = btoa(product.images[0].data.data)
-      console.log(product.images[0].contentType + " " + product.images[0].base64.length)
-    })
+    this.products = changes.products.currentValue.map(product => (
+      {...product, ...{base64: `data:${product.images[0].contentType};base64,${product.image}`}}
+    ));
   }
 }

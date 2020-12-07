@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 
-// const productUrl = 'http://localhost:8080/api/products';
+//const productUrl = 'http://localhost:8080/api/products';
 const productUrl = "https://server-node-js-jiongwu.herokuapp.com/api/products"
 
 @Injectable({
@@ -20,12 +20,12 @@ export class ProductService {
     fetch(`${productUrl}/${productId}`)
       .then(response => response.json())
 
-  createProduct = (newProduct) => fetch(productUrl, {
-    method: 'POST',
-    credentials: 'include',
-    body: JSON.stringify(newProduct),
-    headers: { 'content-type': 'application/json' }
-  })
+  // createProduct = (newProduct) => fetch(productUrl, {
+  //   method: 'POST',
+  //   credentials: 'include',
+  //   body: JSON.stringify(newProduct),
+  //   headers: { 'content-type': 'application/json' }
+  // })
 
   searchProduct = (searchConditions) => fetch(productUrl+'/search', {
     method: 'POST',
@@ -47,7 +47,7 @@ export class ProductService {
   }).then(response => response.json())
 
   // Create User
-  createProductImg(newProduct: any, image) {
+  createProduct(newProduct: any, image) {
     let formData: any = new FormData();
     for (let key in newProduct){
       let val = newProduct[key];
