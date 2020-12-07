@@ -45,38 +45,40 @@
     <div class="row align-items-center">
         <div class="col-4 bg-light">
             <h3 class="name">{{product.name}}</h3>
-            <h5>lat{{product.location.lat}}, lng{{product.location.lng}}</h5>
+            <h5>{{product.address}}</h5>
             <div class="price">${{product.price}}</div>
             <div class="type">{{product.type}}</div>
             <p>Listed 2 days ago</p>
             <p>Details</p>
             <p>{{product.description}}</p>
-            <div class="text-center">
+
+          <div class="text-center">
             <input class="rounded-pill text-center bg-light" type="text" value="Is this still available?">
             <br>
               <button
               class="btn btn-success btn-block rounded-pill"
-              [hidden]="this.currentUser.role === 'SELLER'">BUY
+              [hidden]="anonymousUser && currentUser.role === 'SELLER'">BUY
               </button>
               <button
                 class="btn btn-warning btn-block rounded-pill"
-                [hidden]="!this.productOwner">
+                [hidden]="!productOwner || anonymousUser">
                 <a routerLink="edit/{{product._id}}"></a>
                 EDIT
               </button>
               <button
                 class="btn btn-danger btn-block rounded-pill"
-                [hidden]="!this.productOwner"
+                [hidden]="!productOwner || anonymousUser"
                 (click)="deleteProduct(product._id)"
                 >
                 <a routerLink="home"></a>
                 DELETE
               </button>
+
             </div>
         </div>
         <div class="col-8 d-flex justify-content-center align-items-center">
             <button><i class="fas fa-arrow-left"></i></button>
-<!--          <div class="image" style="background-image: url('{{product.base6git pu4}}')"></div>-->
+          <div class="image" style="background-image: url('{{product.base64}}')"></div>
           <button><i class="fas fa-arrow-right"></i></button>
     </div>
 </div>

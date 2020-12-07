@@ -10,18 +10,21 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class DetailComponent implements OnInit {
   product: any = {
-    name: '',
-    type: '',
-    price: 0,
-    description: '',
-    address: '',
-    location: {lat: 0, lng: 0},
-    owner: ''
+    // name: '',
+    // base64: '',
+    // type: '',
+    // price: 0,
+    // description: '',
+    // address: '',
+    // location: {lat: 0, lng: 0},
+    // owner: ''
   };
   currentUser: any = {
-    role: 'BUYER'
+    role: "BUYER"
   };
   productOwner = false;
+  anonymousUser = false;
+
 
   deleteProduct = (productId) => {
     this.productService.deleteProduct(productId)
@@ -47,11 +50,18 @@ export class DetailComponent implements OnInit {
         this.productService.findProductById(productId)
           .then(product => {
             this.product = product;
+            this.product = {...this.product, ...{base64: `data:${product.images[0].contentType};base64,${product.image}`}};
+            console.log(this.product);
             if (this.currentUser && this.currentUser._id === this.product.owner) {
               this.productOwner = true;
             }
           });
       }
     });
+
+    // check for anonymous user
+    if (this.currentUser.username === null){
+      this.anonymousUser = true;
+    }
   }
 }
