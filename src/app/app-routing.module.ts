@@ -8,6 +8,7 @@ import {DetailComponent} from "./detail/detail.component";
 import {RegisterComponent} from "./register/register.component";
 import {ProductMapComponent} from "./product-map/product-map.component";
 import {EditProductComponent} from "./edit-product/edit-product.component";
+import {EditProfileComponent} from './edit-profile/edit-profile.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: "register", component: RegisterComponent },
   { path: "profile", component: ProfileComponent },
   { path: "profile/:uid", component: ProfileComponent },
+  { path: "edit_profile/:uid", component: EditProfileComponent },
   { path: "search", component: SearchComponent },
   { path: "product/:pid", component: DetailComponent },
   { path: "detail/:pid", component: DetailComponent },

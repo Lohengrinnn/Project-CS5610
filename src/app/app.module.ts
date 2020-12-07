@@ -18,6 +18,7 @@ import {UserService} from "../services/user.service";
 import { EditProductComponent } from './edit-product/edit-product.component';
 import {CommonModule} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {HttpClientModule} from "@angular/common/http";
     ProductGridComponent,
     ProductMapComponent,
     PrivacyPolicyComponent,
-    EditProductComponent
+    EditProductComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,
