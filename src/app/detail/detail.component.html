@@ -57,9 +57,7 @@
             <button class="btn btn-success btn-block rounded-pill">SEND</button>
               <button
                 class="btn btn-warning btn-block rounded-pill"
-                [hidden]="!this.productOwner">
-                <a routerLink="edit/{{product._id}}"></a>
-                EDIT
+                [hidden]="!this.productOwner" (click)="editClicked()">
               </button>
             </div>
         </div>

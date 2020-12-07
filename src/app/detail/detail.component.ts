@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../services/user.service';
 import {ProductService} from '../../services/product.service';
 
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-detail',
@@ -11,6 +11,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class DetailComponent implements OnInit {
   product: any = {
+    _id: '',
     name: '',
     type: '',
     price: 0,
@@ -24,14 +25,17 @@ export class DetailComponent implements OnInit {
 
   constructor(private userService: UserService,
               private productService: ProductService,
+              private router: Router,
               private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.userService.currentUser().then(currentUser => {
       // check if user is log in and product belong to the user
       this.currentUser = currentUser;
+      console.log("currentUser id is: " + this.currentUser._id);
       if (currentUser && currentUser._id === this.product.owner) {
         this.productOwner = true;
+        console.log("productOwner is: " + this.productOwner);
       }
     });
 
@@ -40,7 +44,8 @@ export class DetailComponent implements OnInit {
       if (productId !== undefined) {
         this.productService.findProductById(productId)
           .then(product => {
-            this.product = product
+            this.product = product;
+            console.log("product is: " + JSON.stringify(product));
             if (this.currentUser && this.currentUser._id === this.product.owner) {
               this.productOwner = true;
             }
@@ -48,4 +53,9 @@ export class DetailComponent implements OnInit {
       }
     });
   }
+
+  editClicked(){
+    this.router.navigateByUrl('/edit/' + this.product._id);
+  }
+
 }
