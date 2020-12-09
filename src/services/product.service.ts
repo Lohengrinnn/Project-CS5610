@@ -44,7 +44,7 @@ export class ProductService {
   deleteProduct = (productId) => fetch(`${productUrl}/${productId}`, {
     method: 'DELETE',
     credentials: 'include',
-  })
+  }).then(response => response.json())
 
   // Create User
   createProduct(newProduct: any, image) {
