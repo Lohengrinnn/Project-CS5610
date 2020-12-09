@@ -7,8 +7,8 @@ img {
 }
 
 .image {
-  width: 100%;
-  height: 500px;
+  width: 80%;
+  height: 400px;
   background-color: #000000;
   background-size: contain;
   background-position: center;

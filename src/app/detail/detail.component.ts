@@ -21,7 +21,7 @@ export class DetailComponent implements OnInit {
   };
   currentUser: any = {
   };
-  productOwner = true;
+  productOwner = false;
   anonymousUser = false;
 
 

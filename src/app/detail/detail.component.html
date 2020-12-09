@@ -53,8 +53,6 @@
             <p>{{product.description}}</p>
 
           <div class="text-center">
-            <input class="rounded-pill text-center bg-light" type="text" value="Is this still available?">
-            <br>
               <button
               class="btn btn-success btn-block rounded-pill"
               [hidden]="anonymousUser || currentUser.role === 'SELLER'">BUY</button>
