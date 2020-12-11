@@ -48,8 +48,10 @@
             <h5>{{product.address}}</h5>
             <div class="price">${{product.price}}</div>
             <div class="type">{{product.type}}</div>
-            <p>Listed 2 days ago</p>
-            <p>Details</p>
+            <p>Listed 2 days ago by <a routerLink="/profile/{{product.owner._id}}">
+              {{product.owner.username}}
+            </a></p>
+            <p>Details:</p>
             <p>{{product.description}}</p>
 
           <div class="text-center">
