@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../services/user.service';
 import {ProductService} from '../../services/product.service';
 import {ActivatedRoute} from '@angular/router';
+import {RemarkService} from "../../services/remark.service";
 
 @Component({
   selector: 'app-detail',
@@ -23,7 +24,50 @@ export class DetailComponent implements OnInit {
   };
   productOwner = false;
   anonymousUser = false;
+  remarks : Array<any> = []
+  selectedRemark : any;
 
+  selectRemark = (remark) => this.selectedRemark = remark;
+
+  addRemark = () => {
+    let newRemark = {
+      product: this.product._id,
+      author: { _id: this.currentUser._id, username: this.currentUser.username},
+      editing: true
+    };
+    this.remarks.push(newRemark);
+  }
+
+  editRemark = (remark) => {
+    remark.editing = true;
+  }
+
+  saveRemark = (remark) => {
+    remark.editing = false;
+    if (remark._id) {
+      this.remarkService.updateRemark(remark);
+    } else {
+      this.remarkService.createRemark(remark).then(actualRemark => {
+        remark._id = actualRemark._id
+        // const index = this.remarks.findIndex((r => r.id == null));
+        // this.remarks[index]._id = actualRemark._id
+      });
+    }
+  }
+
+  deleteRemark = (remark) => {
+    if (remark._id == null) {
+      this.remarks = this.remarks.filter(r => r._id != null)
+    } else {
+      this.remarkService.deleteRemark(remark._id)
+        .then(status => this.remarks = this.remarks.filter(r => r._id != remark._id))
+    }
+  }
+
+  findRemarks = (productId) => this.remarkService.findRemarksByProductId(productId)
+    .then(remarks => {
+      this.remarks = remarks;
+    })
 
   deleteProduct = (productId) => {
     this.productService.deleteProduct(productId)
@@ -32,7 +76,9 @@ export class DetailComponent implements OnInit {
 
   constructor(private userService: UserService,
               private productService: ProductService,
-              private activatedRoute: ActivatedRoute) {}
+              private activatedRoute: ActivatedRoute,
+              private remarkService: RemarkService) {}
+
 
   ngOnInit(): void {
     this.userService.currentUser().then(currentUser => {
@@ -54,6 +100,7 @@ export class DetailComponent implements OnInit {
           .then(product => {
             this.product = product;
             this.product = {...this.product, ...{base64: `data:${product.images[0].contentType};base64,${product.image}`}};
+            this.findRemarks(productId)
           });
       }
     });
