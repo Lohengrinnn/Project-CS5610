@@ -13,7 +13,7 @@ export class ProfileComponent implements OnInit {
   // this is the user id of the profile page
   profileId: undefined;
   // the user of  this profile page
-  user: any = {_id: '', username: '', password: '', email: '', address: '', phone: '', role: '', dob: ''};
+  user: any = {_id: '', username: '', password: '', email: '', address: '', phone: '', role: '', dob: '', followings: []};
   currentUserId: undefined;
   profileOwner = false;
   products:Product[] = [];
@@ -77,6 +77,19 @@ export class ProfileComponent implements OnInit {
 
   addToFavorites() {
     console.log("aaa");
+
+    this.userService.currentUser().then(currentUser => {
+      if (currentUser) {
+        console.log("currentUser is " + JSON.stringify(currentUser));
+        this.currentUserId = currentUser._id;
+        currentUser.followings.push(this.profileId);
+
+      } else {
+        this.router.navigate(['login']);
+      }
+
+    });
+
   }
 
 }
