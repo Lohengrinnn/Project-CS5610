@@ -13,14 +13,23 @@ import {UserService} from "../../services/user.service";
 export class HomeComponent implements OnInit {
   // @ViewChild('map') public mapElement: ElementRef;
   // map: google.maps.Map;
-  products:Product[] = [];
-  // currentUser: any;
+  products: Array<any> = [];
+  published: Array<any> = [];
+  userRole: String = "";
 
   constructor(private productService: ProductService,
               private mapService: MapService,
               private userService: UserService) { }
 
   ngOnInit(): void {
+    this.userService.currentUser().then(currentUser => {
+      if (currentUser) {
+        this.userRole = currentUser.role;
+        if (this.userRole == "SELLER") {
+          this.published = this.products.filter(product => product.owner._id === currentUser._id);
+        }
+      }
+    });
     this.productService.getProducts()
       .then(products => {
         // console.log(JSON.stringify(products))

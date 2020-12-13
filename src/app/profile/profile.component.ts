@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../services/user.service";
+import {Product} from '../../classes/product';
+import {ProductService} from '../../services/product.service';
 
 @Component({
   selector: 'app-profile',
@@ -9,11 +11,15 @@ import {UserService} from "../../services/user.service";
 })
 export class ProfileComponent implements OnInit {
   // this is the user id of the profile page
-  userId: number = -1;
-  // the user who is looking at this profile page
+  profileId: undefined;
+  // the user of  this profile page
   user: any = {_id: '', username: '', password: '', email: '', address: '', phone: '', role: '', dob: ''};
+  currentUserId: undefined;
+  profileOwner = false;
+  products:Product[] = [];
 
   constructor(private router: Router,
+              private productService: ProductService,
               private activeRoute: ActivatedRoute,
               private userService: UserService) { }
 
@@ -21,24 +27,52 @@ export class ProfileComponent implements OnInit {
     this.activeRoute.params.subscribe(params => {
       const uid = params.uid;
       if (typeof uid !== 'undefined') {
-        this.userId = uid;
-      } else {
-        this.userService.currentUser().then(currentUser => {
-          if (currentUser) {
-            this.user = currentUser;
-          } else {
-            this.router.navigate(['login']);
-          }
-        })
+        this.profileId = uid;
+        console.log("profile id is: " + this.profileId);
       }
+      console.log("Fetching current user");
+      this.userService.currentUser().then(currentUser => {
+        if (currentUser) {
+          console.log("currentUser is " + JSON.stringify(currentUser));
+          this.currentUserId = currentUser._id;
+          if (!this.profileId) {
+            this.profileId = currentUser._id;
+            this.user = currentUser;
+          }
+        } else {
+          this.router.navigate(['login']);
+        }
+        if (this.currentUserId === this.profileId) {
+          this.profileOwner = true;
+          console.log("productOwner is true");
+        }
+
+        this.productService.getProducts()
+          .then(products => {
+            console.log("profile id is  " + this.profileId);
+            //console.log("Products: " + JSON.stringify(products));
+            this.products = products.filter(product => product.owner._id === this.profileId);
+          });
+
+        if (!this.profileOwner && this.profileId) {
+          console.log("fetch profile as the user is not current user");
+          this.userService.findUserById(this.profileId).then(user => {
+            this.user = user;
+          });
+        }
+
+      });
+
+
+
     });
+
+
   }
 
   // we should only allow a user to update its own profile
   update() {
-    console.log("to update user with: " + JSON.stringify(this.user));
-    this.userService.updateUser(this.user)
-      .then(status => console.log('update status is ' + status));
+    this.router.navigateByUrl('/edit_profile/' + this.profileId);
   }
 
 }

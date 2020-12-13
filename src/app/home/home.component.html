@@ -5,12 +5,16 @@
       <h3>Recent products</h3>
       <app-product-grid [products]="products"></app-product-grid>
       <br>
-      <h3>Published</h3>
-      <app-product-grid [products]="products" [publish]="true"></app-product-grid>
-      <br>
-      <h3>Liked</h3>
-      <br>
-      <h3>Viewed</h3>
+      <div [hidden]="userRole!='SELLER'">
+        <h3>Published</h3>
+        <app-product-grid [products]="published" [publish]="true"></app-product-grid>
+        <br>
+      </div>
+      <div [hidden]="userRole!='BUYER'">
+        <h3>Bought</h3>
+        <app-product-grid [products]="products" [publish]="true"></app-product-grid>
+        <br>
+      </div>
     </div>
     <div style="width:300px">
       <div style="width:100%;height:300px">
@@ -18,11 +22,8 @@
       </div>
 <!--      <div #map style="width:100%;height:300px"></div>-->
       <div class="dashboard">
-        <p>users: 100</p>
-        <p>products: 200</p>
-        <p>transactions: 0</p>
+        <p>we have {{products.length}} products in total</p>
       </div>
     </div>
   </div>
-
 </div>

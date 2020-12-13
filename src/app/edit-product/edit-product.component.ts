@@ -44,7 +44,9 @@ export class EditProductComponent implements OnInit {
   create() {
     // console.log("create: " + JSON.stringify(this.product));
     this.productService.createProduct(this.product, this.image).subscribe(
-      (res) => console.log(res),
+      (actualProduct) => {
+        this.router.navigateByUrl("/detail/${actualProduct._id}")
+      },
       (err) => console.log(err)
     );
     // this.productService.createProduct(this.product);
@@ -58,6 +60,10 @@ export class EditProductComponent implements OnInit {
 
   // invoke either create or update function
   save() {
+    if (!this.image) {
+      alert("Please upload the image of your goods.");
+      return
+    }
     this.product.owner = this.currentUser._id;
     if (this.product._id){
       this.update();

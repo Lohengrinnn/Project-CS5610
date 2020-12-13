@@ -29,6 +29,7 @@
               </a>
             </div>
             <div>
+              
               <ul class="mb-2 list-group">
                 <li
                   [ngClass]="{'list-group-item-success': remark === selectedRemark}"
@@ -37,8 +38,8 @@
                   class="list-group-item">
                   {{remark.author.username}}:
                   <span [hidden]="remark.editing">{{remark.content}}</span>
+                  
                   <input class="form-control" [hidden]="!remark.editing" [(ngModel)]="remark.content"/>
-
                   <div [hidden]="currentUser == null || currentUser._id != remark.author._id">
                     <button class="btn btn-sm btn-danger float-right" (click)="deleteRemark(remark)">
                       Delete
@@ -47,11 +48,13 @@
                       Edit
                     </button>
                     <button class="btn btn-sm btn-success float-right" [hidden]="!remark.editing" (click)="saveRemark(remark)">
+
                       Save
                     </button>
                   </div>
                 </li>
                 <li class="list-group-item" [hidden]="currentUser==null">
+                  
                   <button class="btn btn-sm btn-primary" (click)="addRemark()">
                     Create
                   </button>

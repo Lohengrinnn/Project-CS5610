@@ -56,4 +56,8 @@ export class UserService {
     body: JSON.stringify(user),
     headers: { 'content-type': 'application/json' }
   })
+
+  findUserById = (userId) =>
+    fetch(`${apiUrl}/user/${userId}`)
+      .then(response => response.json())
 }

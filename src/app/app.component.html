@@ -27,16 +27,19 @@
   </button>
   <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
     <ul class="navbar-nav  text-black">
+      <li class="nav-item home-login text-center rounded-pill" [hidden]="user.username=='anonymous'">
+        <a href="/profile/{{user._id}}" class="nav-link home-login rounded-pill text-center">Welcome {{user.username}}</a>
+      </li>
       <li class="nav-item">
         <a href="#" class="nav-link home-login rounded-pill text-center">Home</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" [hidden]="user.username!='anonymous'">
         <a href="login" class="nav-link home-login rounded-pill text-center">Sign In</a>
       </li>
       <li class="nav-item">
         <a href="register" class="nav-link home-login rounded-pill text-center">Sign Up </a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" [hidden]="user.username=='anonymous'">
         <a (click)="logout()" class="nav-link home-login rounded-pill text-center">Sign Out</a>
       </li>
     </ul>

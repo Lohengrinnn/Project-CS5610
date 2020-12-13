@@ -10,6 +10,7 @@ import {Router} from "@angular/router";
 export class ProductGridComponent implements OnInit {
   @Input() products: any[];
   @Input() publish: boolean = false;
+  @Input() user: any = {_id: '', username: 'anonymous'};
   constructor(private router: Router) { }
 
   ngOnInit(): void {
