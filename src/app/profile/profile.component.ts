@@ -75,4 +75,8 @@ export class ProfileComponent implements OnInit {
     this.router.navigateByUrl('/edit_profile/' + this.profileId);
   }
 
+  addToFavorites() {
+    console.log("aaa");
+  }
+
 }
