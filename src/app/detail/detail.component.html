@@ -1,6 +1,6 @@
 <div class="products container">
     <div class="row align-items-center">
-        <div class="col-5 bg-light">
+        <div class="col-6 bg-light">
             <h3 class="name">{{product.name}}</h3>
             <h5>{{product.address}}</h5>
             <div class="price">${{product.price}}</div>
@@ -11,25 +11,21 @@
             <h5>Details:</h5>
             <p>{{product.description}}</p>
 
-          <div class="text-center">
+            <div class="text-center">
               <button
               class="btn btn-success btn-block rounded-pill"
               [hidden]="anonymousUser || currentUser.role === 'SELLER'">BUY</button>
-              <a
-                  class="btn btn-warning btn-block rounded-pill"
+              <a class="btn btn-warning btn-block rounded-pill"
                   [hidden]="!productOwner || anonymousUser"
                   routerLink="/edit/{{product._id}}">EDIT</a>
 
               <a routerLink="/home"
                 class="btn btn-danger btn-block rounded-pill"
                 [hidden]="!productOwner || anonymousUser"
-                (click)="deleteProduct(product._id)"
-                >
-                DELETE
-              </a>
+                (click)="deleteProduct(product._id)">DELETE</a>
             </div>
+          <h4>Remarks:</h4>
             <div>
-              
               <ul class="mb-2 list-group">
                 <li
                   [ngClass]="{'list-group-item-success': remark === selectedRemark}"
@@ -38,32 +34,30 @@
                   class="list-group-item">
                   {{remark.author.username}}:
                   <span [hidden]="remark.editing">{{remark.content}}</span>
-                  
-                  <input class="form-control" [hidden]="!remark.editing" [(ngModel)]="remark.content"/>
-                  <div [hidden]="currentUser == null || currentUser._id != remark.author._id">
+                  <textarea class="form-control" [hidden]="!remark.editing" [(ngModel)]="remark.content"></textarea>
+                  <div [hidden]="currentUser === null || currentUser._id !== remark.author._id || remark !== selectedRemark">
                     <button class="btn btn-sm btn-danger float-right" (click)="deleteRemark(remark)">
-                      Delete
+                      delete
                     </button>
                     <button class="btn btn-sm btn-warning float-right" [hidden]="remark.editing" (click)="editRemark(remark)">
-                      Edit
+                      edit
                     </button>
                     <button class="btn btn-sm btn-success float-right" [hidden]="!remark.editing" (click)="saveRemark(remark)">
-
-                      Save
+                      save
                     </button>
                   </div>
                 </li>
                 <li class="list-group-item" [hidden]="currentUser==null">
-                  
+
                   <button class="btn btn-sm btn-primary" (click)="addRemark()">
-                    Create
+                    remark
                   </button>
                 </li>
               </ul>
             </div>
         </div>
 
-        <div class="col-7 d-flex justify-content-center align-items-center">
+        <div class="col-6 d-flex justify-content-center align-items-center">
           <div class="image" style="background-image: url('{{product.base64}}')"></div>
         </div>
     </div>
