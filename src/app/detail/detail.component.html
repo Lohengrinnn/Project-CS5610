@@ -51,7 +51,7 @@
             <p>Listed 2 days ago by <a routerLink="/profile/{{product.owner._id}}">
               {{product.owner.username}}
             </a></p>
-            <p>Details:</p>
+            <h5>Details:</h5>
             <p>{{product.description}}</p>
 
           <div class="text-center">
@@ -64,7 +64,7 @@
                   routerLink="/edit/{{product._id}}">EDIT</a>
 
               <a routerLink="/home"
-                class="btn btn-danger btn-block rounded-pill"
+                class="btn btn-danger çbtn-block rounded-pill"
                 [hidden]="!productOwner || anonymousUser"
                 (click)="deleteProduct(product._id)"
                 >
