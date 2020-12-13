@@ -42,10 +42,14 @@ export class EditProductComponent implements OnInit {
   }
 
   create() {
+    if (!this.image) {
+      alert("Please upload the image of your goods.");
+      return
+    }
     // console.log("create: " + JSON.stringify(this.product));
     this.productService.createProduct(this.product, this.image).subscribe(
       (actualProduct) => {
-        this.router.navigateByUrl("/detail/${actualProduct._id}")
+        this.router.navigateByUrl(`/detail/${actualProduct._id}`)
       },
       (err) => console.log(err)
     );
@@ -54,16 +58,19 @@ export class EditProductComponent implements OnInit {
   }
 
   update() {
-    this.productService.updateProduct(this.product)
-      .then(actualProduct => this.router.navigate(['detail']));
+    this.productService.updateProduct({
+      _id: this.product._id,
+      name: this.product.name,
+      type: this.product.type,
+      price: this.product.price,
+      description: this.product.description,
+      address: this.product.address,
+      location: this.product.location
+    }).then(status => this.router.navigateByUrl(`/detail/${this.product._id}`))
   }
 
   // invoke either create or update function
   save() {
-    if (!this.image) {
-      alert("Please upload the image of your goods.");
-      return
-    }
     this.product.owner = this.currentUser._id;
     if (this.product._id){
       this.update();

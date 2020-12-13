@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
         this.updatePublished();
         this.userService.findUserById(currentUser._id).then(user => {
           this.following = user.following;
-          console.log("follow:" + this.following);
+          // console.log("follow:" + this.following);
 
           this.following.map(followId => {
 
