@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   products: Array<any> = [];
   published: Array<any> = [];
   userRole: String = "";
+  following: [];
 
   constructor(private productService: ProductService,
               private mapService: MapService,
@@ -28,6 +29,13 @@ export class HomeComponent implements OnInit {
         if (this.userRole == "SELLER") {
           this.published = this.products.filter(product => product.owner._id === currentUser._id);
         }
+
+        this.userService.findUserById(currentUser._id).then(user => {
+          this.following = user.following;
+          console.log("follow:" + this.following);
+        });
+
+
       }
     });
     this.productService.getProducts()
