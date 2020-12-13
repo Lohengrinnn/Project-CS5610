@@ -82,15 +82,18 @@ export class ProfileComponent implements OnInit {
       if (currentUser) {
         console.log("currentUser is " + JSON.stringify(currentUser));
         this.currentUserId = currentUser._id;
-        currentUser.following.push(this.profileId);
 
-        // const followings = [];
-        // followings.push(this.profileId);
-        // currentUser = { ...currentUser, followings: followings};
-        this.userService.updateUser(currentUser).then( resp => {
-            console.log("update user success");
-          }
-        );
+
+        this.userService.findUserById(this.currentUserId).then(user => {
+          user.following.push(this.profileId);
+          // currentUser = { ...currentUser, followings: followings};
+          this.userService.updateUser(user).then( resp => {
+              console.log("update user success");
+            }
+          );
+        });
+
+
 
       } else {
         this.router.navigate(['login']);
