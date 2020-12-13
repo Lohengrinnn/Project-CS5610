@@ -5,7 +5,7 @@
       <div>
         <h3>Following</h3>
         <li *ngFor="let followedUser of followedUsers">
-          <a routerLink="/profile/{{followedUser._id}}">{{followedUser._username}}</a>
+          <a routerLink="/profile/{{followedUser._id}}">{{followedUser.username}}</a>
         </li>
         <!--
         <a routerLink="/profile/5fcd5d592fd1ed517137efd8">Lin</a>
