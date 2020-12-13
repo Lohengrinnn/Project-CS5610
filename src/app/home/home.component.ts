@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   published: Array<any> = [];
   userRole: String = "";
   following: [];
+  followedUsers: Array<any> = [];
 
   constructor(private productService: ProductService,
               private mapService: MapService,
@@ -33,6 +34,16 @@ export class HomeComponent implements OnInit {
         this.userService.findUserById(currentUser._id).then(user => {
           this.following = user.following;
           console.log("follow:" + this.following);
+
+          this.following.map(followId => {
+
+            this.userService.findUserById(followId).then(follow => {
+              this.followedUsers.push(follow);
+              console.log("follow user:" + JSON.stringify(follow));
+            });
+
+          });
+
         });
 
 
