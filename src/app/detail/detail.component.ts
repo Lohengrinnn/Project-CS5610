@@ -18,10 +18,9 @@ export class DetailComponent implements OnInit {
     // description: '',
     // address: '',
     // location: {lat: 0, lng: 0},
-    // owner: ''
+    owner: {_id: "", username: ""}
   };
-  currentUser: any = {
-  };
+  currentUser: any = {};
   productOwner = false;
   anonymousUser = false;
   remarks : Array<any> = []
