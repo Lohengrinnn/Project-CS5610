@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   products: Array<any> = [];
   published: Array<any> = [];
   userRole: String = "";
+  currentUserId: String = "";
   following: [];
   followedUsers: Array<any> = [];
 
@@ -23,14 +24,18 @@ export class HomeComponent implements OnInit {
               private mapService: MapService,
               private userService: UserService) { }
 
+  updatePublished() {
+    if (this.userRole == "SELLER") {
+      this.published = this.products.filter(product => product.owner._id === this.currentUserId);
+    }
+  }
+
   ngOnInit(): void {
     this.userService.currentUser().then(currentUser => {
       if (currentUser) {
         this.userRole = currentUser.role;
-        if (this.userRole == "SELLER") {
-          this.published = this.products.filter(product => product.owner._id === currentUser._id);
-        }
-
+        this.currentUserId = currentUser._id;
+        this.updatePublished();
         this.userService.findUserById(currentUser._id).then(user => {
           this.following = user.following;
           console.log("follow:" + this.following);
@@ -53,6 +58,7 @@ export class HomeComponent implements OnInit {
       .then(products => {
         // console.log(JSON.stringify(products))
         this.products = products;
+        this.updatePublished();
       })
   }
 

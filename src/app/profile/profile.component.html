@@ -2,22 +2,34 @@
   <h3>Profile</h3>
 
   <div class="form-group row">
-    <div>Username: {{user.username}}</div>
-  </div>
-  <div class="form-group row">
-    <div>Address: {{user.address}}</div>
-  </div>
-  <div class="form-group row">
-    <div>Role: {{user.role}}</div>
-  </div>
-  <div class="form-group row">
-    <div [hidden]=!profileOwner>Email: {{user.email}}</div>
-  </div>
-  <div class="form-group row">
-    <div [hidden]=!profileOwner>Phone: {{user.phone}}</div>
+    <label for="username" class="col-sm-2">Username:</label>
+    <label id="username" class="col-sm-3">{{profileUser.username}}</label>
+    <i class="fa fa-heart" [hidden]="this.follow === 'none'"
+       [ngClass]="{'followed': this.follow === 'true', 'unfollowed': this.follow === 'false'  }"
+       (click)="addToFavorites()"></i>
   </div>
 
-  <div [hidden]=!profileOwner class="form-group row">
+  <div class="form-group row">
+    <label for="address" class="col-sm-2">Address:</label>
+    <label id="address" class="col-sm-10">{{profileUser.address}}</label>
+  </div>
+
+  <div class="form-group row">
+    <label for="role" class="col-sm-2">Role:</label>
+    <label id="role" class="col-sm-10">{{profileUser.role}}</label>
+  </div>
+
+  <div class="form-group row" [hidden]="!profileOwner()">
+    <label for="email" class="col-sm-2">Email:</label>
+    <label id="email" class="col-sm-10">{{profileUser.email}}</label>
+  </div>
+
+  <div class="form-group row" [hidden]="!profileOwner()">
+    <label for="phone" class="col-sm-2">Phone:</label>
+    <label id="phone" class="col-sm-10">{{profileUser.phone}}</label>
+  </div>
+
+  <div [hidden]="!profileOwner()" class="form-group row">
     <div class="col-sm-2"></div>
     <div class="col-sm-10">
       <button (click)="update()" class="btn btn-lg btn-success btn-block">Update</button>
@@ -27,9 +39,5 @@
   <h3>Published</h3>
     <app-product-grid [products]="products" [publish]="true"></app-product-grid>
   <br>
-
-  <div>
-    <button type="button" class="btn btn-success" (click)="addToFavorites()">Follow</button>
-  </div>
 
 </div>
