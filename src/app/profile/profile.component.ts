@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
               private activeRoute: ActivatedRoute,
               private userService: UserService) { }
 
-  profileOwner = () => this.currentUser._id !== '' && this.currentUser._id !== this.profileUserId;
+  profileOwner = () => this.currentUser._id !== '' && this.currentUser._id === this.profileUserId;
 
   fetchProduct = () => {
     this.productService.getProducts()

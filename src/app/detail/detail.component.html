@@ -14,14 +14,14 @@
             <div class="text-center">
               <button
               class="btn btn-success btn-block rounded-pill"
-              [hidden]="anonymousUser || currentUser.role === 'SELLER'">BUY</button>
+              [hidden]="currentUser.role !== 'BUYER'">BUY</button>
               <a class="btn btn-warning btn-block rounded-pill"
-                  [hidden]="!productOwner || anonymousUser"
+                  [hidden]="!productOwner()"
                   routerLink="/edit/{{product._id}}">EDIT</a>
 
               <a routerLink="/home"
                 class="btn btn-danger btn-block rounded-pill"
-                [hidden]="!productOwner || anonymousUser"
+                [hidden]="!productOwner()"
                 (click)="deleteProduct(product._id)">DELETE</a>
             </div>
           <h4>Remarks:</h4>
@@ -35,7 +35,7 @@
                   {{remark.author.username}}:
                   <span [hidden]="remark.editing">{{remark.content}}</span>
                   <textarea class="form-control" [hidden]="!remark.editing" [(ngModel)]="remark.content"></textarea>
-                  <div [hidden]="currentUser === null || currentUser._id !== remark.author._id || remark !== selectedRemark">
+                  <div [hidden]="currentUser._id !== remark.author._id || remark !== selectedRemark">
                     <button class="btn btn-sm btn-danger float-right" (click)="deleteRemark(remark)">
                       delete
                     </button>
@@ -47,7 +47,7 @@
                     </button>
                   </div>
                 </li>
-                <li class="list-group-item" [hidden]="currentUser==null">
+                <li class="list-group-item" [hidden]="currentUser._id === ''">
 
                   <button class="btn btn-sm btn-primary" (click)="addRemark()">
                     remark

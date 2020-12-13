@@ -36,8 +36,8 @@
     </div>
   </div>
 
-  <h3>Published</h3>
-    <app-product-grid [products]="products" [publish]="true"></app-product-grid>
+  <h3 [hidden]="profileUser.role !== 'SELLER'">Published</h3>
+    <app-product-grid [products]="products" [publish]="profileUser._id === currentUser._id"></app-product-grid>
   <br>
 
 </div>

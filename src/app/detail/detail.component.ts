@@ -20,11 +20,11 @@ export class DetailComponent implements OnInit {
     // location: {lat: 0, lng: 0},
     owner: {_id: "", username: ""}
   };
-  currentUser: any = {};
-  productOwner = false;
-  anonymousUser = false;
+  currentUser: any = {_id: "", role: ""};
   remarks : Array<any> = []
   selectedRemark : any;
+
+  productOwner = () => this.currentUser._id === this.product.owner._id
 
   selectRemark = (remark) => this.selectedRemark = remark;
 
@@ -82,13 +82,8 @@ export class DetailComponent implements OnInit {
   ngOnInit(): void {
     this.userService.currentUser().then(currentUser => {
       // check if user is log in and product belong to the user
-      this.currentUser = currentUser;
-      if (this.currentUser && this.currentUser._id === this.product.owner) {
-        this.productOwner = true;
-      }
-      // user not logged in
-      if (this.currentUser === null){
-        this.anonymousUser = true;
+      if (currentUser) {
+        this.currentUser = currentUser;
       }
     });
 

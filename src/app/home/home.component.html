@@ -7,12 +7,12 @@
       <br>
       <div [hidden]="userRole!='SELLER'">
         <h3>Published</h3>
-        <app-product-grid [products]="published" [publish]="true"></app-product-grid>
+        <app-product-grid [products]="published" [user]="currentUser" [publish]="true"></app-product-grid>
         <br>
       </div>
       <div [hidden]="userRole!='BUYER'">
         <h3>Bought</h3>
-        <app-product-grid [products]="products" [publish]="true"></app-product-grid>
+        <app-product-grid [products]="products"></app-product-grid>
         <br>
       </div>
       <div [hidden]="userRole==''">

@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   products: Array<any> = [];
   published: Array<any> = [];
   userRole: String = "";
-  currentUserId: String = "";
+  currentUser: any = {_id: ""};
   following: [];
   followedUsers: Array<any> = [];
 
@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
 
   updatePublished() {
     if (this.userRole == "SELLER") {
-      this.published = this.products.filter(product => product.owner._id === this.currentUserId);
+      this.published = this.products.filter(product => product.owner._id === this.currentUser._id);
     }
   }
 
@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
     this.userService.currentUser().then(currentUser => {
       if (currentUser) {
         this.userRole = currentUser.role;
-        this.currentUserId = currentUser._id;
+        this.currentUser = currentUser;
         this.updatePublished();
         this.userService.findUserById(currentUser._id).then(user => {
           this.following = user.following;
@@ -50,7 +50,6 @@ export class HomeComponent implements OnInit {
           });
 
         });
-
 
       }
     });
