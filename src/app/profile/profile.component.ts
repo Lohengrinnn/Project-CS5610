@@ -13,7 +13,7 @@ export class ProfileComponent implements OnInit {
   // this is the user id of the profile page
   profileId: undefined;
   // the user of  this profile page
-  user: any = {_id: '', username: '', password: '', email: '', address: '', phone: '', role: '', dob: '', followings: []};
+  user: any = {_id: '', username: '', password: '', email: '', address: '', phone: '', role: '', dob: '', following: []};
   currentUserId: undefined;
   profileOwner = false;
   products:Product[] = [];
@@ -82,7 +82,15 @@ export class ProfileComponent implements OnInit {
       if (currentUser) {
         console.log("currentUser is " + JSON.stringify(currentUser));
         this.currentUserId = currentUser._id;
-        currentUser.followings.push(this.profileId);
+        currentUser.following.push(this.profileId);
+
+        // const followings = [];
+        // followings.push(this.profileId);
+        // currentUser = { ...currentUser, followings: followings};
+        this.userService.updateUser(currentUser).then( resp => {
+            console.log("update user success");
+          }
+        );
 
       } else {
         this.router.navigate(['login']);
