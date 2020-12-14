@@ -120,6 +120,9 @@ export class DetailComponent implements OnInit {
         this.productService.findProductById(productId)
           .then(product => {
             this.product = product;
+            if (!this.product.status) {
+              this.product.status = 'AVAILABLE';
+            }
             this.product = {...this.product, ...{base64: `data:${product.images[0].contentType};base64,${product.image}`}};
             this.findRemarks(productId)
           });
