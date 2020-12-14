@@ -84,7 +84,8 @@ export class DetailComponent implements OnInit {
       boughtBy: this.currentUser._id
     }).then(status => {
       console.log('purchase requested');
-      this.router.navigateByUrl(`/detail/${this.product._id}`);
+      this.ngOnInit();
+      //this.router.navigateByUrl(`/detail/${this.product._id}`);
     });
   }
 
@@ -127,7 +128,7 @@ export class DetailComponent implements OnInit {
               this.product.status = 'AVAILABLE';
             }
 
-            if (this.product.status === 'SOLD') {
+            if (this.product.status === 'SOLD' && this.product.boughtBy) {
               console.log("find buyer name for sold product");
               this.userService.findUserById(this.product.boughtBy).then(user => {
                 this.buyerName = user.username;

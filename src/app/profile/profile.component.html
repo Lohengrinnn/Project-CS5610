@@ -44,4 +44,11 @@
     <br>
   </div>
 
+  <div [hidden]="profileUser.role !== 'BUYER'">
+    <h3>Bought</h3>
+    <app-product-grid [products]="products" [user]="profileUser" [bought]="true">
+    </app-product-grid>
+    <br>
+  </div>
+
 </div>

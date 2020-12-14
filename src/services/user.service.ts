@@ -23,7 +23,7 @@ export class UserService {
         'content-type': 'application/json'
       }
     }).then(response => {
-      console.log('login' + response.status);
+      // console.log('login' + response.status);
       if (response.status != 403) {
         localStorage.setItem('isLogin', 'true');
         return response.json();
@@ -61,6 +61,8 @@ export class UserService {
   })
 
   findUserById = (userId) =>
-    fetch(`${apiUrl}/user/${userId}`)
-      .then(response => response.json())
+    fetch(`${apiUrl}/user/${userId}`, {
+      method: 'GET',
+      credentials: 'include'
+    }).then(response => response.json())
 }

@@ -15,9 +15,16 @@
             <p [hidden]="product.status !== 'SOLD'">Bought by <a routerLink="/profile/{{product.boughtBy}}"> {{buyerName}} </a></p>
 
           <div class="text-center">
-              <button
-              class="btn btn-success btn-block rounded-pill"
-              [hidden]="currentUser.role !== 'BUYER'">BUY</button>
+              <button (click)="requestPurchase()"
+                      class="btn btn-success btn-block rounded-pill"
+                      [hidden]="currentUser.role !== 'BUYER' || product.status === 'PENDING' || product.status !== 'SOLD'">
+                BUY
+              </button>
+              <button (click)="confirmPurchase()"
+                      class="btn btn-success btn-block rounded-pill"
+                      [hidden]="product.status !== 'PENDING' || !productOwner()">
+                CONFIRM SOLD
+              </button>
               <a class="btn btn-warning btn-block rounded-pill"
                   [hidden]="!productOwner()"
                   routerLink="/edit/{{product._id}}">EDIT</a>
@@ -58,8 +65,7 @@
                 </li>
               </ul>
             </div>
-          <button type="button" class="btn btn-success" [hidden]="product.status !== 'AVAILABLE' || productOwner()" (click)="requestPurchase()">Buy</button>
-          <button type="button" class="btn btn-success" [hidden]="product.status !== 'PENDING' || !productOwner()" (click)="confirmPurchase()">Confirm Sold</button>
+
         </div>
 
         <div class="col-6 d-flex justify-content-center align-items-center">

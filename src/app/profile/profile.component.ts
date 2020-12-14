@@ -29,7 +29,10 @@ export class ProfileComponent implements OnInit {
     this.productService.getProducts()
       .then(products => {
         // console.log("profile id is  " + this.profileUserId);
-        this.products = products.filter(product => product.owner._id === this.profileUserId);
+        if (this.profileUser.role === "SELLER")
+          this.products = products.filter(product => product.owner._id === this.profileUserId);
+        else if (this.profileUser.role === "BUYER")
+          this.products = products;
       });
   }
 
@@ -53,6 +56,7 @@ export class ProfileComponent implements OnInit {
       if (typeof uid !== 'undefined') {
         this.profileUserId = uid;
         this.userService.findUserById(this.profileUserId).then(user => {
+          // console.log(JSON.stringify(user))
           this.profileUser = user;
         });
         this.fetchProduct();

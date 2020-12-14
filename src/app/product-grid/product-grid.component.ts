@@ -10,6 +10,7 @@ import {Router} from "@angular/router";
 export class ProductGridComponent implements OnInit {
   @Input() products: any[];
   @Input() publish: boolean = false;
+  @Input() bought: boolean = false;
   @Input() user: any = {_id: '', username: 'anonymous'};
   constructor(private router: Router) { }
 
@@ -18,9 +19,14 @@ export class ProductGridComponent implements OnInit {
 
   ngOnChanges(changes) {
     if (changes.products) {
-      this.products = changes.products.currentValue.map(product => (
+      let products = changes.products.currentValue.map(product => (
         {...product, ...{base64: `data:${product.images[0].contentType};base64,${product.image}`}}
       ));
+      if (this.bought) {
+        this.products = products.filter(p => p.boughtBy === this.user._id);
+      } else {
+        this.products = products;
+      }
     }
   }
 }

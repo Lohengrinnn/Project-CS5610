@@ -71,7 +71,10 @@ export class EditProfileComponent implements OnInit {
     }
     // console.log("to update user with: " + JSON.stringify(this.user));
     this.userService.updateUser(this.user)
-      .then(status => console.log('update status is ' + status));
+      .then(status => {
+        console.log('update status is ' + status);
+        this.router.navigateByUrl(`/profile/${this.user._id}`);
+      });
   }
 
 }

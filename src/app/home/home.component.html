@@ -11,7 +11,7 @@
       </div>
       <div [hidden]="userRole!='BUYER'">
         <h3>Bought</h3>
-        <app-product-grid [products]="products"></app-product-grid>
+        <app-product-grid [products]="products" [user]="currentUser" [bought]="true"></app-product-grid>
         <br>
       </div>
       <div [hidden]="userRole==''">
