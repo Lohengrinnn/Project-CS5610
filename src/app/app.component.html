@@ -14,6 +14,7 @@
 <a routerLink="/product/123">Detail</a> |
 <a routerLink="/productmap">Product Map</a> |
 <a routerLink="/publish">Publish New Product</a>
+<app-privacy-policy [(show)]="showPrivacy"></app-privacy-policy>
 <nav class="navbar navbar-expand-sm navbar-light bg-light">
   <a class="navbar-brand" href="/">Flea Market</a>
   <form class="mx-2 my-auto d-inline">
@@ -41,6 +42,9 @@
       </li>
       <li class="nav-item" [hidden]="user.username=='anonymous'">
         <a (click)="logout()" class="nav-link home-login rounded-pill text-center">Sign Out</a>
+      </li>
+      <li class="nav-item" [hidden]="user.username=='anonymous'">
+        <a (click)="showPrivacyPage()" class="nav-link home-login rounded-pill text-center">Privacy</a>
       </li>
     </ul>
   </div>

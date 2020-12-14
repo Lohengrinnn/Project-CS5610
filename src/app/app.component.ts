@@ -11,9 +11,14 @@ export class AppComponent implements OnInit {
   title = 'Flea Market';
   anonymous : any = {_id: '', username: 'anonymous'};
   user : any = this.anonymous;
+  showPrivacy: boolean = false;
 
   constructor(private userService: UserService,
               private router: Router) {
+  }
+
+  showPrivacyPage() {
+    this.showPrivacy = true;
   }
 
   ngOnInit(): void {
