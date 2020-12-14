@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../services/user.service';
 import {ProductService} from '../../services/product.service';
-import {ActivatedRoute} from '@angular/router';
-import {RemarkService} from "../../services/remark.service";
+import {ActivatedRoute, Router} from '@angular/router';
+import {RemarkService} from '../../services/remark.service';
 
 @Component({
   selector: 'app-detail',
@@ -18,11 +18,13 @@ export class DetailComponent implements OnInit {
     // description: '',
     // address: '',
     // location: {lat: 0, lng: 0},
+    status: 'AVAILABLE',
     owner: {_id: "", username: ""}
   };
   currentUser: any = {_id: "", role: ""};
   remarks : Array<any> = []
   selectedRemark : any;
+  buyerName: undefined;
 
   productOwner = () => this.currentUser._id === this.product.owner._id
 
@@ -73,8 +75,35 @@ export class DetailComponent implements OnInit {
       .then(status => console.log(status));
   }
 
+  requestPurchase(){
+    console.log('requestPurchase for '+ this.product._id);
+
+    this.productService.updateProduct({
+      _id: this.product._id,
+      status: 'PENDING',
+      boughtBy: this.currentUser._id
+    }).then(status => {
+      console.log('purchase requested');
+      this.router.navigateByUrl(`/detail/${this.product._id}`);
+    });
+  }
+
+  confirmPurchase(){
+    console.log('confirmPurchase for ' + this.product._id);
+
+
+    this.productService.updateProduct({
+      _id: this.product._id,
+      status: 'SOLD'
+    }).then(status => {
+      console.log('sold confirmed');
+      this.router.navigateByUrl(`/detail/${this.product._id}`);
+    });
+  }
+
   constructor(private userService: UserService,
               private productService: ProductService,
+              private router: Router,
               private activatedRoute: ActivatedRoute,
               private remarkService: RemarkService) {}
 
@@ -93,6 +122,19 @@ export class DetailComponent implements OnInit {
         this.productService.findProductById(productId)
           .then(product => {
             this.product = product;
+            console.log("load product: " + JSON.stringify(product.boughtBy));
+            if (!this.product.status) {
+              this.product.status = 'AVAILABLE';
+            }
+
+            if (this.product.status === 'SOLD') {
+              console.log("find buyer name for sold product");
+              this.userService.findUserById(this.product.boughtBy).then(user => {
+                this.buyerName = user.username;
+                console.log("find buyer name for sold product 2" + JSON.stringify(user));
+              });
+            }
+
             this.product = {...this.product, ...{base64: `data:${product.images[0].contentType};base64,${product.image}`}};
             this.findRemarks(productId)
           });

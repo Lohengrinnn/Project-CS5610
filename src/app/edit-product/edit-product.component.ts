@@ -24,6 +24,7 @@ export class EditProductComponent implements OnInit {
     description: '',
     address: '',
     location: { lat: 0, lng: 0 },
+    status: ''
   };
   currentUser: any;
   image: any;
@@ -65,8 +66,8 @@ export class EditProductComponent implements OnInit {
       price: this.product.price,
       description: this.product.description,
       address: this.product.address,
-      location: this.product.location
-    }).then(status => this.router.navigateByUrl(`/detail/${this.product._id}`))
+      location: this.product.location,
+    }).then(status => this.router.navigateByUrl(`/detail/${this.product._id}`));
   }
 
   // invoke either create or update function

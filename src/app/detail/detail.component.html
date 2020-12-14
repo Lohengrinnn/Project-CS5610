@@ -10,8 +10,11 @@
             </a></p>
             <h5>Details:</h5>
             <p>{{product.description}}</p>
+            <h5>Status:</h5>
+            <p>{{product.status}}</p>
+            <p [hidden]="product.status !== 'SOLD'">Bought by <a routerLink="/profile/{{product.boughtBy}}"> {{buyerName}} </a></p>
 
-            <div class="text-center">
+          <div class="text-center">
               <button
               class="btn btn-success btn-block rounded-pill"
               [hidden]="currentUser.role !== 'BUYER'">BUY</button>
@@ -55,6 +58,8 @@
                 </li>
               </ul>
             </div>
+          <button type="button" class="btn btn-success" [hidden]="product.status !== 'AVAILABLE' || productOwner()" (click)="requestPurchase()">Buy</button>
+          <button type="button" class="btn btn-success" [hidden]="product.status !== 'PENDING' || !productOwner()" (click)="confirmPurchase()">Confirm Sold</button>
         </div>
 
         <div class="col-6 d-flex justify-content-center align-items-center">
