@@ -67,6 +67,7 @@ export class EditProductComponent implements OnInit {
       description: this.product.description,
       address: this.product.address,
       location: this.product.location,
+      status: this.product.status
     }).then(status => this.router.navigateByUrl(`/detail/${this.product._id}`));
   }
 
