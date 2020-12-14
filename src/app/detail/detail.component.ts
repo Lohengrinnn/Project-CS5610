@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../services/user.service';
 import {ProductService} from '../../services/product.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {RemarkService} from "../../services/remark.service";
+import {RemarkService} from '../../services/remark.service';
 
 @Component({
   selector: 'app-detail',
@@ -121,6 +121,7 @@ export class DetailComponent implements OnInit {
         this.productService.findProductById(productId)
           .then(product => {
             this.product = product;
+            console.log("load product: " + JSON.stringify(product.boughtBy));
             if (!this.product.status) {
               this.product.status = 'AVAILABLE';
             }
