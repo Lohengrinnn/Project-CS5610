@@ -17,7 +17,7 @@
           <div class="text-center">
               <button (click)="requestPurchase()"
                       class="btn btn-success btn-block rounded-pill"
-                      [hidden]="currentUser.role !== 'BUYER' || product.status === 'PENDING' || product.status !== 'SOLD'">
+                      [hidden]="currentUser.role !== 'BUYER' || product.status === 'PENDING' || product.status === 'SOLD'">
                 BUY
               </button>
               <button (click)="confirmPurchase()"
