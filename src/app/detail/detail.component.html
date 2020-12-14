@@ -57,8 +57,8 @@
                 </li>
               </ul>
             </div>
-          <button type="button" class="btn btn-success" [hidden]="product.status !== 'AVAILABLE'" (click)="requestPurchase()">Buy</button>
-          <button type="button" class="btn btn-success" [hidden]="product.status !== 'PENDING'" (click)="confirmPurchase()">Confirm Sold</button>
+          <button type="button" class="btn btn-success" [hidden]="product.status !== 'AVAILABLE' || productOwner()" (click)="requestPurchase()">Buy</button>
+          <button type="button" class="btn btn-success" [hidden]="product.status !== 'PENDING' || !productOwner()" (click)="confirmPurchase()">Confirm Sold</button>
         </div>
 
         <div class="col-6 d-flex justify-content-center align-items-center">
