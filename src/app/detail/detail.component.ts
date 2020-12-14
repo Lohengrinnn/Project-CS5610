@@ -24,6 +24,7 @@ export class DetailComponent implements OnInit {
   currentUser: any = {_id: "", role: ""};
   remarks : Array<any> = []
   selectedRemark : any;
+  buyerName: undefined;
 
   productOwner = () => this.currentUser._id === this.product.owner._id
 
@@ -125,6 +126,15 @@ export class DetailComponent implements OnInit {
             if (!this.product.status) {
               this.product.status = 'AVAILABLE';
             }
+
+            if (this.product.status === 'SOLD') {
+              console.log("find buyer name for sold product");
+              this.userService.findUserById(this.product.boughtBy).then(user => {
+                this.buyerName = user.username;
+                console.log("find buyer name for sold product 2" + JSON.stringify(user));
+              });
+            }
+
             this.product = {...this.product, ...{base64: `data:${product.images[0].contentType};base64,${product.image}`}};
             this.findRemarks(productId)
           });
