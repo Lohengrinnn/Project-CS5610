@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../services/user.service';
 import {ProductService} from '../../services/product.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {RemarkService} from "../../services/remark.service";
 
 @Component({
@@ -73,8 +73,16 @@ export class DetailComponent implements OnInit {
       .then(status => console.log(status));
   }
 
+  requestPurchase(){
+    this.productService.updateProduct({
+      status: 'PENDING'
+    }).then(status => this.router.navigateByUrl(`/detail/${this.product._id}`));
+    console.log('purchase requested');
+  }
+
   constructor(private userService: UserService,
               private productService: ProductService,
+              private router: Router,
               private activatedRoute: ActivatedRoute,
               private remarkService: RemarkService) {}
 
