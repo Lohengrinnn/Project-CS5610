@@ -18,6 +18,7 @@ export class DetailComponent implements OnInit {
     // description: '',
     // address: '',
     // location: {lat: 0, lng: 0},
+    status: 'AVAILABLE',
     owner: {_id: "", username: ""}
   };
   currentUser: any = {_id: "", role: ""};
