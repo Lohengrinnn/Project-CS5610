@@ -9,7 +9,7 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-  products: Product[];
+  products: Array<any>;
   searchField;
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -31,7 +31,7 @@ export class SearchComponent implements OnInit {
     if (!this.searchField) {
       this.productService.getProducts().then(products => this.products = products);
     } else {
-      this.productService.searchProduct({name: this.searchField})
+      this.productService.searchProduct({name: {$regex: `.*${this.searchField}.*`}})
         .then(products => {
           console.log("searched products: " + JSON.stringify(products));
           this.products = products;

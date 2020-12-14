@@ -2,16 +2,16 @@
   <table class="table">
     <thead>
       <tr>
-        <th>Image</th>
         <th>Name</th>
+        <th>Owner</th>
         <th>Price</th>
         <th>Address</th>
         <th>Description</th>
       </tr>
     </thead>
     <tr *ngFor="let product of products">
-      <td></td>
       <td><a href="detail/{{product._id}}">{{product.name}}</a></td>
+      <td><a href="profile/{{product.owner._id}}">{{product.owner.username}}</a></td>
       <td>${{product.price}}</td>
       <td>{{product.address}}</td>
       <td>{{product.description}}</td>
