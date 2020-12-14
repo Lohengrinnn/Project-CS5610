@@ -7,36 +7,36 @@
 <!-- * * * * * * * to get started with your project! * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <app-privacy-policy [(show)]="showPrivacy"></app-privacy-policy>
-<nav class="navbar navbar-expand-sm navbar-light bg-light">
-  <a class="navbar-brand" href="/">Flea Market</a>
+<nav class="navbar navbar-expand-sm  nv-bg navbar-light">
+  <a class="navbar-brand title" href="/">Flea Market</a>
   <form class="mx-2 my-auto d-inline">
-    <input type="text" #searchField class="form-control" placeholder="...">
+    <input type="text" #searchField class="form-control" placeholder="">
   </form>
-  <button type="button" class="btn btn-success btn-default" (click)="btnClick(searchField.value)"><i class="fas fa-search"></i> Search</button>
+  <button type="button" class="btn btn-success btn-default" (click)="btnClick(searchField.value)"><i class="fas fa-search"></i></button>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
-    <ul class="navbar-nav  text-black">
-      <li class="nav-item home-login text-center rounded-pill" [hidden]="user.username=='anonymous'">
-        <a href="/profile/{{user._id}}" class="nav-link home-login rounded-pill text-center">Welcome {{user.username}}</a>
+    <ul class="navbar-nav navbar-light title">
+      <li class="nav-item home-login text-center rounded-pill " [hidden]="user.username=='anonymous'">
+        <a href="/profile/{{user._id}}" class="nav-link home-login rounded-pill text-center ">Welcome {{user.username}}</a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link home-login rounded-pill text-center">Home</a>
+        <a href="#" class="nav-link home-login rounded-pill text-center title">Home</a>
       </li>
       <li class="nav-item" [hidden]="user.username!='anonymous'">
-        <a href="login" class="nav-link home-login rounded-pill text-center">Sign In</a>
+        <a href="login" class="nav-link home-login rounded-pill text-center title">Sign In</a>
       </li>
       <li class="nav-item">
-        <a href="register" class="nav-link home-login rounded-pill text-center">Sign Up </a>
+        <a href="register" class="nav-link home-login rounded-pill text-center title">Sign Up </a>
       </li>
       <li class="nav-item" [hidden]="user.username=='anonymous'">
-        <a (click)="logout()" class="nav-link home-login rounded-pill text-center">Sign Out</a>
+        <a (click)="logout()" class="nav-link home-login rounded-pill text-center title">Sign Out</a>
       </li>
       <li class="nav-item" [hidden]="user.username=='anonymous'">
-        <a (click)="showPrivacyPage()" class="nav-link home-login rounded-pill text-center">Privacy</a>
+        <a (click)="showPrivacyPage()" class="nav-link home-login rounded-pill text-center title">Privacy</a>
       </li>
     </ul>
   </div>

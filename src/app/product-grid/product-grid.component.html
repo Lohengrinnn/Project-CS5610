@@ -1,4 +1,4 @@
-<ul class="products">
+<ul class="products title">
     <li *ngIf="publish">
       <div class="plus">
         <a routerLink="/publish">
@@ -6,7 +6,7 @@
         </a>
       </div>
     </li>
-    <li *ngFor="let product of products">
+    <li *ngFor="let product of products" class="card">
       <div class="name">
         <a routerLink="/detail/{{product._id}}">
           {{product.name}}

@@ -1,21 +1,21 @@
 <div class="container">
   <div class="home">
     <div class="main">
-      <h3>Recent products</h3>
+      <h3 class="sub-title">Recent products</h3>
       <app-product-grid [products]="products"></app-product-grid>
       <br>
       <div [hidden]="userRole!='SELLER'">
-        <h3>Published</h3>
+        <h3 class="sub-title">Published</h3>
         <app-product-grid [products]="published" [user]="currentUser" [publish]="true"></app-product-grid>
         <br>
       </div>
       <div [hidden]="userRole!='BUYER'">
-        <h3>Bought</h3>
+        <h3 class="sub-title">Bought</h3>
         <app-product-grid [products]="products" [user]="currentUser" [bought]="true"></app-product-grid>
         <br>
       </div>
       <div [hidden]="userRole==''">
-        <h3>Following</h3>
+        <h3 class="sub-title">Following</h3>
         <li *ngFor="let followedUser of followedUsers">
           <a routerLink="/profile/{{followedUser._id}}">{{followedUser.username}}</a>
         </li>
@@ -27,7 +27,7 @@
       </div>
 <!--      <div #map style="width:100%;height:300px"></div>-->
       <div class="dashboard">
-        <p>we have {{products.length}} products in total</p>
+        <p class="sub-title">we have {{products.length}} products in total</p>
       </div>
     </div>
   </div>
