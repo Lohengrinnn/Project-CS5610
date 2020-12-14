@@ -80,6 +80,13 @@ export class DetailComponent implements OnInit {
     console.log('purchase requested');
   }
 
+  confirmPurchase(){
+    this.productService.updateProduct({
+      status: 'SOLD'
+    }).then(status => this.router.navigateByUrl(`/detail/${this.product._id}`));
+    console.log('purchase confirmed');
+  }
+
   constructor(private userService: UserService,
               private productService: ProductService,
               private router: Router,
