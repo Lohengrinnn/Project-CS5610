@@ -74,17 +74,28 @@ export class DetailComponent implements OnInit {
   }
 
   requestPurchase(){
+    console.log('requestPurchase for '+ this.product._id);
+
     this.productService.updateProduct({
+      _id: this.product._id,
       status: 'PENDING'
-    }).then(status => this.router.navigateByUrl(`/detail/${this.product._id}`));
-    console.log('purchase requested');
+    }).then(status => {
+      console.log('purchase requested');
+      this.router.navigateByUrl(`/detail/${this.product._id}`);
+    });
   }
 
   confirmPurchase(){
+    console.log('confirmPurchase for ' + this.product._id);
+
+
     this.productService.updateProduct({
+      _id: this.product._id,
       status: 'SOLD'
-    }).then(status => this.router.navigateByUrl(`/detail/${this.product._id}`));
-    console.log('purchase confirmed');
+    }).then(status => {
+      console.log('sold confirmed');
+      this.router.navigateByUrl(`/detail/${this.product._id}`);
+    });
   }
 
   constructor(private userService: UserService,
