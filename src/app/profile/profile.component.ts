@@ -86,7 +86,6 @@ export class ProfileComponent implements OnInit {
     // currentUser = { ...currentUser, followings: followings};
     this.userService.updateUser(this.currentUser).then(resp => {
       console.log("update user success")});
-    this.userService.login(this.currentUser.username, this.currentUser.password);
     this.updateFollow();
   }
 

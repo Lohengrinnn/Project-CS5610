@@ -31,8 +31,10 @@ export class EditProfileComponent implements OnInit {
           this.currentUserId = currentUser._id;
           if (this.currentUserId === this.profileId) {
             this.profileOwner = true;
-            console.log("productOwner is true");
             this.user = currentUser;
+            if (this.user.dob)
+              this.user.dob = this.user.dob.slice(0, 10);
+            // console.log("user info: " + JSON.stringify(this.user));
           }
         } else {
           this.router.navigate(['login']);
@@ -44,7 +46,30 @@ export class EditProfileComponent implements OnInit {
 
   // we should only allow a user to update its own profile
   update() {
-    console.log("to update user with: " + JSON.stringify(this.user));
+    const reDt = /^\d{4}-\d{2}-\d{2}$/
+    if (!this.user.dob || !this.user.dob.match(reDt)) {
+      alert('date of birth is not valid');
+      return;
+    }
+    const reMail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if (!this.user.email || !this.user.email.match(reMail)) {
+      alert('email:(' + this.user.email + ') not valid');
+      return;
+    }
+    const rePhone = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+    if (!this.user.phone || !this.user.phone.match(rePhone)) {
+      alert('phone:(' + this.user.phone + ') not valid');
+      return;
+    }
+    if (!this.user.address) {
+      alert('address is required ');
+      return;
+    }
+    if (!this.user.role) {
+      alert('role is required ');
+      return;
+    }
+    // console.log("to update user with: " + JSON.stringify(this.user));
     this.userService.updateUser(this.user)
       .then(status => console.log('update status is ' + status));
   }

@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 
-//const apiUrl = "http://localhost:8080/api"
- const apiUrl = "https://server-node-js-jiongwu.herokuapp.com/api"
+// const apiUrl = "http://localhost:8080/api"
+const apiUrl = "https://server-node-js-jiongwu.herokuapp.com/api"
 
 @Injectable({
   providedIn: 'root',
@@ -55,6 +55,9 @@ export class UserService {
     credentials: 'include',
     body: JSON.stringify(user),
     headers: { 'content-type': 'application/json' }
+  }).then(status => {
+    this.login(user.username, user.password);
+    return status;
   })
 
   findUserById = (userId) =>
