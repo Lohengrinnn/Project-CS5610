@@ -12,9 +12,9 @@
             <p>{{product.description}}</p>
             <h5>Status:</h5>
             <p>{{product.status}}</p>
+            <p [hidden]="product.status !== 'SOLD'">Bought by <a routerLink="/profile/{{product.boughtBy}}">
 
-
-            <div class="text-center">
+          <div class="text-center">
               <button
               class="btn btn-success btn-block rounded-pill"
               [hidden]="currentUser.role !== 'BUYER'">BUY</button>
