@@ -79,7 +79,8 @@ export class DetailComponent implements OnInit {
 
     this.productService.updateProduct({
       _id: this.product._id,
-      status: 'PENDING'
+      status: 'PENDING',
+      boughtBy: this.currentUser._id
     }).then(status => {
       console.log('purchase requested');
       this.router.navigateByUrl(`/detail/${this.product._id}`);
