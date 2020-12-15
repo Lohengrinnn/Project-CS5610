@@ -13,11 +13,6 @@
     <input type="text" #searchField class="form-control" placeholder="">
   </form>
   <button type="button" class="btn btn-success btn-default" (click)="btnClick(searchField.value)"><i class="fas fa-search"></i></button>
-
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
   <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
     <ul class="navbar-nav navbar-light title">
       <li class="nav-item home-login text-center rounded-pill " [hidden]="user.username=='anonymous'">

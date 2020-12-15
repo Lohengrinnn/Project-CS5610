@@ -1,5 +1,5 @@
 <div class="container">
-  <h3>Profile</h3>
+  <h3 class="sub-title">Profile</h3>
 
   <div class="form-group row">
     <label for="username" class="col-sm-2">Username:</label>
@@ -37,7 +37,7 @@
   </div>
 
   <div [hidden]="profileUser.role !== 'SELLER'">
-    <h3>Published</h3>
+    <h3 class="sub-title">Published</h3>
     <app-product-grid [products]="products"
                       [publish]="profileUser._id === currentUser._id">
     </app-product-grid>
@@ -45,7 +45,7 @@
   </div>
 
   <div [hidden]="profileUser.role !== 'BUYER'">
-    <h3>Bought</h3>
+    <h3 class="sub-title">Bought</h3>
     <app-product-grid [products]="products" [user]="profileUser" [bought]="true">
     </app-product-grid>
     <br>
