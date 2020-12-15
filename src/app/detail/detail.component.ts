@@ -98,7 +98,7 @@ export class DetailComponent implements OnInit {
       status: 'SOLD'
     }).then(status => {
       console.log('sold confirmed');
-      this.router.navigateByUrl(`/detail/${this.product._id}`);
+      this.ngOnInit();
     });
   }
 
